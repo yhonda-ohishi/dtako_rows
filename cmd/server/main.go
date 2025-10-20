@@ -10,9 +10,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/yhonda-ohishi/dtako_rows/internal/config"
-	"github.com/yhonda-ohishi/dtako_rows/internal/repository"
-	"github.com/yhonda-ohishi/dtako_rows/internal/service"
-	pb "github.com/yhonda-ohishi/dtako_rows/proto"
+	"github.com/yhonda-ohishi/dtako_rows/pkg/registry"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -31,17 +29,11 @@ func main() {
 	}
 	log.Println("Connected to database (prod_db)")
 
-	// リポジトリ初期化
-	rowRepo := repository.NewDtakoRowRepository(db)
-
-	// サービス初期化
-	dtakoRowsService := service.NewDtakoRowsService(rowRepo)
-
 	// gRPCサーバー作成
 	grpcServer := grpc.NewServer()
 
-	// サービス登録
-	pb.RegisterDtakoRowsServiceServer(grpcServer, dtakoRowsService)
+	// サービス登録（registryパターン使用）
+	registry.Register(grpcServer, db)
 
 	// リフレクション登録（grpcurlなどのツール用）
 	reflection.Register(grpcServer)

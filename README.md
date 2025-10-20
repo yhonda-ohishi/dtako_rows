@@ -22,6 +22,7 @@
 - **プロトコル**: gRPC
 - **データベース**: MySQL/MariaDB (prod_db)
 - **ORM**: GORM v1.25+
+- **アーキテクチャ**: Registryパターン（外部サービス統合対応）
 
 ## セットアップ
 
@@ -136,12 +137,49 @@ func main() {
 }
 ```
 
+### 外部サービスから利用（Registryパターン）
+
+```go
+package main
+
+import (
+    "log"
+    "net"
+
+    "github.com/yhonda-ohishi/dtako_rows/pkg/registry"
+    "google.golang.org/grpc"
+    "gorm.io/gorm"
+)
+
+func main() {
+    // データベース接続（既存のDB接続を想定）
+    var db *gorm.DB
+    // db = ... (database connection)
+
+    // gRPCサーバー作成
+    grpcServer := grpc.NewServer()
+
+    // dtako_rowsサービスを登録（1行で完了）
+    registry.Register(grpcServer, db)
+
+    // その他のサービスも登録可能
+    // otherRegistry.Register(grpcServer, db)
+
+    // サーバー起動
+    listener, _ := net.Listen("tcp", ":50053")
+    grpcServer.Serve(listener)
+}
+```
+
 ## プロジェクト構造
 
 ```
 dtako_rows/
 ├── proto/                      # Protocol Buffers定義
 │   └── dtako_rows.proto
+├── pkg/                        # 公開パッケージ
+│   └── registry/              # サービス登録（外部統合用）
+│       └── registry.go
 ├── internal/
 │   ├── models/                # GORMモデル
 │   │   └── dtako_row.go
