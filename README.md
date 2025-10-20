@@ -112,7 +112,7 @@ import (
     "context"
     "log"
 
-    pb "github.com/yhonda-ohishi/dtako_rows/proto"
+    pb "github.com/yhonda-ohishi/dtako_rows/v2/proto"
     "google.golang.org/grpc"
 )
 
@@ -146,7 +146,7 @@ import (
     "log"
     "net"
 
-    "github.com/yhonda-ohishi/dtako_rows/pkg/registry"
+    "github.com/yhonda-ohishi/dtako_rows/v2/pkg/registry"
     "google.golang.org/grpc"
 )
 

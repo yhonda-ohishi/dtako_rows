@@ -1,4 +1,4 @@
-module github.com/yhonda-ohishi/dtako_rows
+module github.com/yhonda-ohishi/dtako_rows/v2
 
 go 1.25.1
 

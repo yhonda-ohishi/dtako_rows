@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/yhonda-ohishi/dtako_rows/internal/models"
+	"github.com/yhonda-ohishi/dtako_rows/v2/internal/models"
 	"gorm.io/gorm"
 )
 

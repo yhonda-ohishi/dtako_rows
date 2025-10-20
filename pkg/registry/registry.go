@@ -1,7 +1,7 @@
 package registry
 
 import (
-	"github.com/yhonda-ohishi/dtako_rows/pkg/server"
+	"github.com/yhonda-ohishi/dtako_rows/v2/pkg/server"
 	"google.golang.org/grpc"
 )
 

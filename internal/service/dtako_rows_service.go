@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/yhonda-ohishi/dtako_rows/internal/models"
-	"github.com/yhonda-ohishi/dtako_rows/internal/repository"
-	pb "github.com/yhonda-ohishi/dtako_rows/proto"
+	"github.com/yhonda-ohishi/dtako_rows/v2/internal/models"
+	"github.com/yhonda-ohishi/dtako_rows/v2/internal/repository"
+	pb "github.com/yhonda-ohishi/dtako_rows/v2/proto"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"

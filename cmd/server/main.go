@@ -9,7 +9,7 @@ import (
 	"syscall"
 
 	"github.com/joho/godotenv"
-	"github.com/yhonda-ohishi/dtako_rows/pkg/registry"
+	"github.com/yhonda-ohishi/dtako_rows/v2/pkg/registry"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

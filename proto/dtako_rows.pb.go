@@ -772,7 +772,7 @@ const file_proto_dtako_rows_proto_rawDesc = "" +
 	"\tUpdateRow\x12\x1c.dtako_rows.UpdateRowRequest\x1a\x1d.dtako_rows.UpdateRowResponse\x12H\n" +
 	"\tDeleteRow\x12\x1c.dtako_rows.DeleteRowRequest\x1a\x1d.dtako_rows.DeleteRowResponse\x12I\n" +
 	"\n" +
-	"SearchRows\x12\x1d.dtako_rows.SearchRowsRequest\x1a\x1c.dtako_rows.ListRowsResponseB6Z4github.com/yhonda-ohishi/dtako_rows/proto;dtako_rowsb\x06proto3"
+	"SearchRows\x12\x1d.dtako_rows.SearchRowsRequest\x1a\x1c.dtako_rows.ListRowsResponseB9Z7github.com/yhonda-ohishi/dtako_rows/v2/proto;dtako_rowsb\x06proto3"
 
 var (
 	file_proto_dtako_rows_proto_rawDescOnce sync.Once
