@@ -148,28 +148,33 @@ import (
 
     "github.com/yhonda-ohishi/dtako_rows/pkg/registry"
     "google.golang.org/grpc"
-    "gorm.io/gorm"
 )
 
 func main() {
-    // データベース接続（既存のDB接続を想定）
-    var db *gorm.DB
-    // db = ... (database connection)
-
     // gRPCサーバー作成
     grpcServer := grpc.NewServer()
 
     // dtako_rowsサービスを登録（1行で完了）
-    registry.Register(grpcServer, db)
+    // DB接続は内部で管理され、環境変数から設定を読み込みます
+    if err := registry.Register(grpcServer); err != nil {
+        log.Fatal(err)
+    }
 
     // その他のサービスも登録可能
-    // otherRegistry.Register(grpcServer, db)
+    // otherRegistry.Register(grpcServer)
 
     // サーバー起動
     listener, _ := net.Listen("tcp", ":50053")
     grpcServer.Serve(listener)
 }
 ```
+
+**重要**: サービスは環境変数からDB接続情報を読み込みます：
+- `DB_HOST` - データベースホスト（デフォルト: localhost）
+- `DB_PORT` - データベースポート（デフォルト: 3306）
+- `DB_USER` - データベースユーザー（デフォルト: root）
+- `DB_PASSWORD` - データベースパスワード
+- `DB_NAME` - データベース名（デフォルト: prod_db）
 
 ## プロジェクト構造
 
@@ -178,8 +183,10 @@ dtako_rows/
 ├── proto/                      # Protocol Buffers定義
 │   └── dtako_rows.proto
 ├── pkg/                        # 公開パッケージ
-│   └── registry/              # サービス登録（外部統合用）
-│       └── registry.go
+│   ├── registry/              # サービス登録（外部統合用）
+│   │   └── registry.go
+│   └── server/                # サーバー初期化
+│       └── server.go
 ├── internal/
 │   ├── models/                # GORMモデル
 │   │   └── dtako_row.go

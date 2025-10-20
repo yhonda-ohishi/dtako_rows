@@ -30,6 +30,17 @@ func LoadDatabaseConfig() *DatabaseConfig {
 	}
 }
 
+// DSN データベース接続文字列を取得
+func (c *DatabaseConfig) DSN() string {
+	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		c.User,
+		c.Password,
+		c.Host,
+		c.Port,
+		c.Database,
+	)
+}
+
 // ConnectDatabase データベースに接続
 func ConnectDatabase(config *DatabaseConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",

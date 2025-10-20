@@ -9,7 +9,6 @@ import (
 	"syscall"
 
 	"github.com/joho/godotenv"
-	"github.com/yhonda-ohishi/dtako_rows/internal/config"
 	"github.com/yhonda-ohishi/dtako_rows/pkg/registry"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -21,19 +20,14 @@ func main() {
 		log.Println("Warning: .env file not found, using environment variables")
 	}
 
-	// データベース接続
-	dbConfig := config.LoadDatabaseConfig()
-	db, err := config.ConnectDatabase(dbConfig)
-	if err != nil {
-		log.Fatalf("Failed to connect to database: %v", err)
-	}
-	log.Println("Connected to database (prod_db)")
-
 	// gRPCサーバー作成
 	grpcServer := grpc.NewServer()
 
 	// サービス登録（registryパターン使用）
-	registry.Register(grpcServer, db)
+	// DB接続は内部で管理されます
+	if err := registry.Register(grpcServer); err != nil {
+		log.Fatalf("Failed to register services: %v", err)
+	}
 
 	// リフレクション登録（grpcurlなどのツール用）
 	reflection.Register(grpcServer)
@@ -64,12 +58,6 @@ func main() {
 	log.Printf("Starting gRPC server on port %s...", port)
 	log.Printf("Services registered:")
 	log.Printf("  - DtakoRowsService")
-	log.Printf("Database: %s@%s:%s/%s",
-		dbConfig.User,
-		dbConfig.Host,
-		dbConfig.Port,
-		dbConfig.Database,
-	)
 
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
