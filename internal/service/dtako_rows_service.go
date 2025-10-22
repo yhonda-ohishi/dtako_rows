@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	pb "github.com/yhonda-ohishi/dtako_rows/v2/proto"
+	pb "github.com/yhonda-ohishi/dtako_rows/v3/proto"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

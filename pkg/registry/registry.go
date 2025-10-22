@@ -3,8 +3,8 @@ package registry
 import (
 	"log"
 
-	"github.com/yhonda-ohishi/dtako_rows/v2/internal/service"
-	pb "github.com/yhonda-ohishi/dtako_rows/v2/proto"
+	"github.com/yhonda-ohishi/dtako_rows/v3/internal/service"
+	pb "github.com/yhonda-ohishi/dtako_rows/v3/proto"
 	"google.golang.org/grpc"
 )
 

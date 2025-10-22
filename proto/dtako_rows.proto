@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package dtako_rows;
 
-option go_package = "github.com/yhonda-ohishi/dtako_rows/v2/proto;dtako_rows";
+option go_package = "github.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows";
 
 import "google/protobuf/timestamp.proto";
 
