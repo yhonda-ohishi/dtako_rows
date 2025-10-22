@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package dtako_rows_aggregation;
+
+option go_package = "github.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows_aggregation";
+
+// DtakoRowsAggregationService - 運行データ集計サービス
+service DtakoRowsAggregationService {
+  // 車両ごとの月次給油量集計
+  rpc GetMonthlyFuelConsumption(GetMonthlyFuelConsumptionRequest) returns (MonthlyFuelConsumptionResponse);
+
+  // 全車両の月次サマリー取得
+  rpc GetVehicleMonthlySummary(GetVehicleMonthlySummaryRequest) returns (VehicleMonthlySummaryResponse);
+
+  // 日次サマリー取得
+  rpc GetDailySummary(GetDailySummaryRequest) returns (DailySummaryResponse);
+
+  // CSV形式でエクスポート
+  rpc ExportMonthlyFuelCSV(GetMonthlyFuelConsumptionRequest) returns (ExportCSVResponse);
+}
+
+// 月次給油量サマリー
+message MonthlyFuelSummary {
+  string car_cc = 1;           // 車輌CC
+  string year_month = 2;       // 年月 (YYYY-MM形式)
+  double total_distance = 3;   // 総走行距離 (km)
+  double total_fuel = 4;       // 総給油量 (L)
+  int32 trip_count = 5;        // 運行回数
+  double avg_fuel_efficiency = 6; // 平均燃費 (km/L)
+}
+
+// 月次給油量取得リクエスト
+message GetMonthlyFuelConsumptionRequest {
+  string car_cc = 1;      // 車輌CC（必須）
+  string start_date = 2;  // 開始日 (YYYY-MM-DD)
+  string end_date = 3;    // 終了日 (YYYY-MM-DD)
+}
+
+// 月次給油量取得レスポンス
+message MonthlyFuelConsumptionResponse {
+  repeated MonthlyFuelSummary summaries = 1;
+  string car_cc = 2;
+  string period = 3;  // 集計期間
+}
+
+// 全車両月次サマリー取得リクエスト
+message GetVehicleMonthlySummaryRequest {
+  string start_date = 1;  // 開始日 (YYYY-MM-DD)
+  string end_date = 2;    // 終了日 (YYYY-MM-DD)
+}
+
+// 車両別月次データ
+message VehicleMonthlySummaries {
+  string car_cc = 1;
+  repeated MonthlyFuelSummary summaries = 2;
+}
+
+// 全車両月次サマリーレスポンス
+message VehicleMonthlySummaryResponse {
+  repeated VehicleMonthlySummaries vehicle_summaries = 1;
+  int32 total_vehicles = 2;
+  string period = 3;
+}
+
+// 日次サマリー取得リクエスト
+message GetDailySummaryRequest {
+  string car_cc = 1;      // 車輌CC（必須）
+  string start_date = 2;  // 開始日 (YYYY-MM-DD)
+  string end_date = 3;    // 終了日 (YYYY-MM-DD)
+}
+
+// 日次サマリー
+message DailySummary {
+  string car_cc = 1;
+  string date = 2;            // 日付 (YYYY-MM-DD)
+  double total_distance = 3;   // 走行距離
+  double total_fuel = 4;       // 給油量
+  int32 trip_count = 5;        // 運行回数
+}
+
+// 日次サマリーレスポンス
+message DailySummaryResponse {
+  repeated DailySummary summaries = 1;
+  string car_cc = 2;
+  string period = 3;
+}
+
+// CSVエクスポートレスポンス
+message ExportCSVResponse {
+  string csv_data = 1;  // CSV形式のデータ
+  string filename = 2;   // 推奨ファイル名
+}

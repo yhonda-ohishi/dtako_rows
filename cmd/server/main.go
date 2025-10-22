@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	dbgrpc "buf.build/gen/go/yhonda-ohishi/db-service/grpc/go/_gogrpc"
 	"github.com/joho/godotenv"
 	"github.com/yhonda-ohishi/dtako_rows/v3/internal/service"
 	pb "github.com/yhonda-ohishi/dtako_rows/v3/proto"
@@ -21,14 +22,30 @@ func main() {
 		log.Println("Warning: .env file not found, using environment variables")
 	}
 
+	// db_serviceアドレス設定
+	dbServiceAddr := os.Getenv("DB_SERVICE_ADDR")
+	if dbServiceAddr == "" {
+		dbServiceAddr = "localhost:50051"
+	}
+
 	// サービス初期化（db_service経由でデータアクセス）
-	dtakoRowsService := service.NewDtakoRowsService()
+	dtakoRowsService, err := service.NewDtakoRowsService(dbServiceAddr)
+	if err != nil {
+		log.Fatalf("Failed to create service: %v", err)
+	}
+
+	// 集計サービス初期化
+	aggregationService, err := service.NewDtakoRowsAggregationService(dbServiceAddr)
+	if err != nil {
+		log.Fatalf("Failed to create aggregation service: %v", err)
+	}
 
 	// gRPCサーバー作成
 	grpcServer := grpc.NewServer()
 
 	// サービス登録
-	pb.RegisterDtakoRowsServiceServer(grpcServer, dtakoRowsService)
+	dbgrpc.RegisterDTakoRowsServiceServer(grpcServer, dtakoRowsService)
+	pb.RegisterDtakoRowsAggregationServiceServer(grpcServer, aggregationService)
 
 	// リフレクション登録（grpcurlなどのツール用）
 	reflection.Register(grpcServer)
@@ -58,8 +75,8 @@ func main() {
 	// サーバー起動
 	log.Printf("Starting gRPC server on port %s...", port)
 	log.Printf("Services registered:")
-	log.Printf("  - DtakoRowsService (data access via db_service)")
-	log.Printf("Note: Requires db_service running on localhost:50051")
+	log.Printf("  - DTakoRowsService (proxy to db_service at %s)", dbServiceAddr)
+	log.Printf("  - DtakoRowsAggregationService (aggregation logic)")
 
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
