@@ -6,22 +6,13 @@ option go_package = "github.com/yhonda-ohishi/dtako_rows/v2/proto;dtako_rows";
 
 import "google/protobuf/timestamp.proto";
 
-// DtakoRowsサービス - 運行データの管理
+// DtakoRowsサービス - 運行データの管理（読み取り専用）
 service DtakoRowsService {
   // 運行データ取得
   rpc GetRow(GetRowRequest) returns (GetRowResponse);
 
   // 運行データ一覧取得
   rpc ListRows(ListRowsRequest) returns (ListRowsResponse);
-
-  // 運行データ作成
-  rpc CreateRow(CreateRowRequest) returns (CreateRowResponse);
-
-  // 運行データ更新
-  rpc UpdateRow(UpdateRowRequest) returns (UpdateRowResponse);
-
-  // 運行データ削除
-  rpc DeleteRow(DeleteRowRequest) returns (DeleteRowResponse);
 
   // 検索
   rpc SearchRows(SearchRowsRequest) returns (ListRowsResponse);
@@ -64,33 +55,6 @@ message ListRowsResponse {
   int32 total = 2;
   int32 page = 3;
   int32 page_size = 4;
-}
-
-// CreateRow
-message CreateRowRequest {
-  DtakoRow row = 1;
-}
-
-message CreateRowResponse {
-  DtakoRow row = 1;
-}
-
-// UpdateRow
-message UpdateRowRequest {
-  DtakoRow row = 1;
-}
-
-message UpdateRowResponse {
-  DtakoRow row = 1;
-}
-
-// DeleteRow
-message DeleteRowRequest {
-  string id = 1;
-}
-
-message DeleteRowResponse {
-  bool success = 1;
 }
 
 // SearchRows

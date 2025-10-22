@@ -373,273 +373,6 @@ func (x *ListRowsResponse) GetPageSize() int32 {
 	return 0
 }
 
-// CreateRow
-type CreateRowRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Row           *DtakoRow              `protobuf:"bytes,1,opt,name=row,proto3" json:"row,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateRowRequest) Reset() {
-	*x = CreateRowRequest{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateRowRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateRowRequest) ProtoMessage() {}
-
-func (x *CreateRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateRowRequest.ProtoReflect.Descriptor instead.
-func (*CreateRowRequest) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *CreateRowRequest) GetRow() *DtakoRow {
-	if x != nil {
-		return x.Row
-	}
-	return nil
-}
-
-type CreateRowResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Row           *DtakoRow              `protobuf:"bytes,1,opt,name=row,proto3" json:"row,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateRowResponse) Reset() {
-	*x = CreateRowResponse{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateRowResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateRowResponse) ProtoMessage() {}
-
-func (x *CreateRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateRowResponse.ProtoReflect.Descriptor instead.
-func (*CreateRowResponse) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *CreateRowResponse) GetRow() *DtakoRow {
-	if x != nil {
-		return x.Row
-	}
-	return nil
-}
-
-// UpdateRow
-type UpdateRowRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Row           *DtakoRow              `protobuf:"bytes,1,opt,name=row,proto3" json:"row,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateRowRequest) Reset() {
-	*x = UpdateRowRequest{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateRowRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateRowRequest) ProtoMessage() {}
-
-func (x *UpdateRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateRowRequest.ProtoReflect.Descriptor instead.
-func (*UpdateRowRequest) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *UpdateRowRequest) GetRow() *DtakoRow {
-	if x != nil {
-		return x.Row
-	}
-	return nil
-}
-
-type UpdateRowResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Row           *DtakoRow              `protobuf:"bytes,1,opt,name=row,proto3" json:"row,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateRowResponse) Reset() {
-	*x = UpdateRowResponse{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateRowResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateRowResponse) ProtoMessage() {}
-
-func (x *UpdateRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateRowResponse.ProtoReflect.Descriptor instead.
-func (*UpdateRowResponse) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *UpdateRowResponse) GetRow() *DtakoRow {
-	if x != nil {
-		return x.Row
-	}
-	return nil
-}
-
-// DeleteRow
-type DeleteRowRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteRowRequest) Reset() {
-	*x = DeleteRowRequest{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteRowRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteRowRequest) ProtoMessage() {}
-
-func (x *DeleteRowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteRowRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRowRequest) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *DeleteRowRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeleteRowResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteRowResponse) Reset() {
-	*x = DeleteRowResponse{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteRowResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteRowResponse) ProtoMessage() {}
-
-func (x *DeleteRowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteRowResponse.ProtoReflect.Descriptor instead.
-func (*DeleteRowResponse) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *DeleteRowResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
 // SearchRows
 type SearchRowsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -653,7 +386,7 @@ type SearchRowsRequest struct {
 
 func (x *SearchRowsRequest) Reset() {
 	*x = SearchRowsRequest{}
-	mi := &file_proto_dtako_rows_proto_msgTypes[11]
+	mi := &file_proto_dtako_rows_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -665,7 +398,7 @@ func (x *SearchRowsRequest) String() string {
 func (*SearchRowsRequest) ProtoMessage() {}
 
 func (x *SearchRowsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_dtako_rows_proto_msgTypes[11]
+	mi := &file_proto_dtako_rows_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -678,7 +411,7 @@ func (x *SearchRowsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchRowsRequest.ProtoReflect.Descriptor instead.
 func (*SearchRowsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{11}
+	return file_proto_dtako_rows_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SearchRowsRequest) GetDateFrom() *timestamppb.Timestamp {
@@ -745,32 +478,17 @@ const file_proto_dtako_rows_proto_rawDesc = "" +
 	"\x04rows\x18\x01 \x03(\v2\x14.dtako_rows.DtakoRowR\x04rows\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\":\n" +
-	"\x10CreateRowRequest\x12&\n" +
-	"\x03row\x18\x01 \x01(\v2\x14.dtako_rows.DtakoRowR\x03row\";\n" +
-	"\x11CreateRowResponse\x12&\n" +
-	"\x03row\x18\x01 \x01(\v2\x14.dtako_rows.DtakoRowR\x03row\":\n" +
-	"\x10UpdateRowRequest\x12&\n" +
-	"\x03row\x18\x01 \x01(\v2\x14.dtako_rows.DtakoRowR\x03row\";\n" +
-	"\x11UpdateRowResponse\x12&\n" +
-	"\x03row\x18\x01 \x01(\v2\x14.dtako_rows.DtakoRowR\x03row\"\"\n" +
-	"\x10DeleteRowRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"-\n" +
-	"\x11DeleteRowResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xbf\x01\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xbf\x01\n" +
 	"\x11SearchRowsRequest\x127\n" +
 	"\tdate_from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\bdateFrom\x123\n" +
 	"\adate_to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x06dateTo\x12\x1d\n" +
 	"\n" +
 	"sharyou_cc\x18\x03 \x01(\tR\tsharyouCc\x12\x1d\n" +
 	"\n" +
-	"jomuin_cd1\x18\x04 \x01(\tR\tjomuinCd12\xc3\x03\n" +
+	"jomuin_cd1\x18\x04 \x01(\tR\tjomuinCd12\xe5\x01\n" +
 	"\x10DtakoRowsService\x12?\n" +
 	"\x06GetRow\x12\x19.dtako_rows.GetRowRequest\x1a\x1a.dtako_rows.GetRowResponse\x12E\n" +
-	"\bListRows\x12\x1b.dtako_rows.ListRowsRequest\x1a\x1c.dtako_rows.ListRowsResponse\x12H\n" +
-	"\tCreateRow\x12\x1c.dtako_rows.CreateRowRequest\x1a\x1d.dtako_rows.CreateRowResponse\x12H\n" +
-	"\tUpdateRow\x12\x1c.dtako_rows.UpdateRowRequest\x1a\x1d.dtako_rows.UpdateRowResponse\x12H\n" +
-	"\tDeleteRow\x12\x1c.dtako_rows.DeleteRowRequest\x1a\x1d.dtako_rows.DeleteRowResponse\x12I\n" +
+	"\bListRows\x12\x1b.dtako_rows.ListRowsRequest\x1a\x1c.dtako_rows.ListRowsResponse\x12I\n" +
 	"\n" +
 	"SearchRows\x12\x1d.dtako_rows.SearchRowsRequest\x1a\x1c.dtako_rows.ListRowsResponseB9Z7github.com/yhonda-ohishi/dtako_rows/v2/proto;dtako_rowsb\x06proto3"
 
@@ -786,53 +504,37 @@ func file_proto_dtako_rows_proto_rawDescGZIP() []byte {
 	return file_proto_dtako_rows_proto_rawDescData
 }
 
-var file_proto_dtako_rows_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_proto_dtako_rows_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_dtako_rows_proto_goTypes = []any{
 	(*DtakoRow)(nil),              // 0: dtako_rows.DtakoRow
 	(*GetRowRequest)(nil),         // 1: dtako_rows.GetRowRequest
 	(*GetRowResponse)(nil),        // 2: dtako_rows.GetRowResponse
 	(*ListRowsRequest)(nil),       // 3: dtako_rows.ListRowsRequest
 	(*ListRowsResponse)(nil),      // 4: dtako_rows.ListRowsResponse
-	(*CreateRowRequest)(nil),      // 5: dtako_rows.CreateRowRequest
-	(*CreateRowResponse)(nil),     // 6: dtako_rows.CreateRowResponse
-	(*UpdateRowRequest)(nil),      // 7: dtako_rows.UpdateRowRequest
-	(*UpdateRowResponse)(nil),     // 8: dtako_rows.UpdateRowResponse
-	(*DeleteRowRequest)(nil),      // 9: dtako_rows.DeleteRowRequest
-	(*DeleteRowResponse)(nil),     // 10: dtako_rows.DeleteRowResponse
-	(*SearchRowsRequest)(nil),     // 11: dtako_rows.SearchRowsRequest
-	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(*SearchRowsRequest)(nil),     // 5: dtako_rows.SearchRowsRequest
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_proto_dtako_rows_proto_depIdxs = []int32{
-	12, // 0: dtako_rows.DtakoRow.shukko_datetime:type_name -> google.protobuf.Timestamp
-	12, // 1: dtako_rows.DtakoRow.kiko_datetime:type_name -> google.protobuf.Timestamp
-	12, // 2: dtako_rows.DtakoRow.unko_date:type_name -> google.protobuf.Timestamp
-	12, // 3: dtako_rows.DtakoRow.created_at:type_name -> google.protobuf.Timestamp
-	12, // 4: dtako_rows.DtakoRow.updated_at:type_name -> google.protobuf.Timestamp
+	6,  // 0: dtako_rows.DtakoRow.shukko_datetime:type_name -> google.protobuf.Timestamp
+	6,  // 1: dtako_rows.DtakoRow.kiko_datetime:type_name -> google.protobuf.Timestamp
+	6,  // 2: dtako_rows.DtakoRow.unko_date:type_name -> google.protobuf.Timestamp
+	6,  // 3: dtako_rows.DtakoRow.created_at:type_name -> google.protobuf.Timestamp
+	6,  // 4: dtako_rows.DtakoRow.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 5: dtako_rows.GetRowResponse.row:type_name -> dtako_rows.DtakoRow
 	0,  // 6: dtako_rows.ListRowsResponse.rows:type_name -> dtako_rows.DtakoRow
-	0,  // 7: dtako_rows.CreateRowRequest.row:type_name -> dtako_rows.DtakoRow
-	0,  // 8: dtako_rows.CreateRowResponse.row:type_name -> dtako_rows.DtakoRow
-	0,  // 9: dtako_rows.UpdateRowRequest.row:type_name -> dtako_rows.DtakoRow
-	0,  // 10: dtako_rows.UpdateRowResponse.row:type_name -> dtako_rows.DtakoRow
-	12, // 11: dtako_rows.SearchRowsRequest.date_from:type_name -> google.protobuf.Timestamp
-	12, // 12: dtako_rows.SearchRowsRequest.date_to:type_name -> google.protobuf.Timestamp
-	1,  // 13: dtako_rows.DtakoRowsService.GetRow:input_type -> dtako_rows.GetRowRequest
-	3,  // 14: dtako_rows.DtakoRowsService.ListRows:input_type -> dtako_rows.ListRowsRequest
-	5,  // 15: dtako_rows.DtakoRowsService.CreateRow:input_type -> dtako_rows.CreateRowRequest
-	7,  // 16: dtako_rows.DtakoRowsService.UpdateRow:input_type -> dtako_rows.UpdateRowRequest
-	9,  // 17: dtako_rows.DtakoRowsService.DeleteRow:input_type -> dtako_rows.DeleteRowRequest
-	11, // 18: dtako_rows.DtakoRowsService.SearchRows:input_type -> dtako_rows.SearchRowsRequest
-	2,  // 19: dtako_rows.DtakoRowsService.GetRow:output_type -> dtako_rows.GetRowResponse
-	4,  // 20: dtako_rows.DtakoRowsService.ListRows:output_type -> dtako_rows.ListRowsResponse
-	6,  // 21: dtako_rows.DtakoRowsService.CreateRow:output_type -> dtako_rows.CreateRowResponse
-	8,  // 22: dtako_rows.DtakoRowsService.UpdateRow:output_type -> dtako_rows.UpdateRowResponse
-	10, // 23: dtako_rows.DtakoRowsService.DeleteRow:output_type -> dtako_rows.DeleteRowResponse
-	4,  // 24: dtako_rows.DtakoRowsService.SearchRows:output_type -> dtako_rows.ListRowsResponse
-	19, // [19:25] is the sub-list for method output_type
-	13, // [13:19] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	6,  // 7: dtako_rows.SearchRowsRequest.date_from:type_name -> google.protobuf.Timestamp
+	6,  // 8: dtako_rows.SearchRowsRequest.date_to:type_name -> google.protobuf.Timestamp
+	1,  // 9: dtako_rows.DtakoRowsService.GetRow:input_type -> dtako_rows.GetRowRequest
+	3,  // 10: dtako_rows.DtakoRowsService.ListRows:input_type -> dtako_rows.ListRowsRequest
+	5,  // 11: dtako_rows.DtakoRowsService.SearchRows:input_type -> dtako_rows.SearchRowsRequest
+	2,  // 12: dtako_rows.DtakoRowsService.GetRow:output_type -> dtako_rows.GetRowResponse
+	4,  // 13: dtako_rows.DtakoRowsService.ListRows:output_type -> dtako_rows.ListRowsResponse
+	4,  // 14: dtako_rows.DtakoRowsService.SearchRows:output_type -> dtako_rows.ListRowsResponse
+	12, // [12:15] is the sub-list for method output_type
+	9,  // [9:12] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_proto_dtako_rows_proto_init() }
@@ -846,7 +548,7 @@ func file_proto_dtako_rows_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_dtako_rows_proto_rawDesc), len(file_proto_dtako_rows_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

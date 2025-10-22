@@ -21,9 +21,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DtakoRowsService_GetRow_FullMethodName     = "/dtako_rows.DtakoRowsService/GetRow"
 	DtakoRowsService_ListRows_FullMethodName   = "/dtako_rows.DtakoRowsService/ListRows"
-	DtakoRowsService_CreateRow_FullMethodName  = "/dtako_rows.DtakoRowsService/CreateRow"
-	DtakoRowsService_UpdateRow_FullMethodName  = "/dtako_rows.DtakoRowsService/UpdateRow"
-	DtakoRowsService_DeleteRow_FullMethodName  = "/dtako_rows.DtakoRowsService/DeleteRow"
 	DtakoRowsService_SearchRows_FullMethodName = "/dtako_rows.DtakoRowsService/SearchRows"
 )
 
@@ -31,18 +28,12 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// DtakoRowsサービス - 運行データの管理
+// DtakoRowsサービス - 運行データの管理（読み取り専用）
 type DtakoRowsServiceClient interface {
 	// 運行データ取得
 	GetRow(ctx context.Context, in *GetRowRequest, opts ...grpc.CallOption) (*GetRowResponse, error)
 	// 運行データ一覧取得
 	ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error)
-	// 運行データ作成
-	CreateRow(ctx context.Context, in *CreateRowRequest, opts ...grpc.CallOption) (*CreateRowResponse, error)
-	// 運行データ更新
-	UpdateRow(ctx context.Context, in *UpdateRowRequest, opts ...grpc.CallOption) (*UpdateRowResponse, error)
-	// 運行データ削除
-	DeleteRow(ctx context.Context, in *DeleteRowRequest, opts ...grpc.CallOption) (*DeleteRowResponse, error)
 	// 検索
 	SearchRows(ctx context.Context, in *SearchRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error)
 }
@@ -75,36 +66,6 @@ func (c *dtakoRowsServiceClient) ListRows(ctx context.Context, in *ListRowsReque
 	return out, nil
 }
 
-func (c *dtakoRowsServiceClient) CreateRow(ctx context.Context, in *CreateRowRequest, opts ...grpc.CallOption) (*CreateRowResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateRowResponse)
-	err := c.cc.Invoke(ctx, DtakoRowsService_CreateRow_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dtakoRowsServiceClient) UpdateRow(ctx context.Context, in *UpdateRowRequest, opts ...grpc.CallOption) (*UpdateRowResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateRowResponse)
-	err := c.cc.Invoke(ctx, DtakoRowsService_UpdateRow_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dtakoRowsServiceClient) DeleteRow(ctx context.Context, in *DeleteRowRequest, opts ...grpc.CallOption) (*DeleteRowResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteRowResponse)
-	err := c.cc.Invoke(ctx, DtakoRowsService_DeleteRow_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *dtakoRowsServiceClient) SearchRows(ctx context.Context, in *SearchRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListRowsResponse)
@@ -119,18 +80,12 @@ func (c *dtakoRowsServiceClient) SearchRows(ctx context.Context, in *SearchRowsR
 // All implementations must embed UnimplementedDtakoRowsServiceServer
 // for forward compatibility.
 //
-// DtakoRowsサービス - 運行データの管理
+// DtakoRowsサービス - 運行データの管理（読み取り専用）
 type DtakoRowsServiceServer interface {
 	// 運行データ取得
 	GetRow(context.Context, *GetRowRequest) (*GetRowResponse, error)
 	// 運行データ一覧取得
 	ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error)
-	// 運行データ作成
-	CreateRow(context.Context, *CreateRowRequest) (*CreateRowResponse, error)
-	// 運行データ更新
-	UpdateRow(context.Context, *UpdateRowRequest) (*UpdateRowResponse, error)
-	// 運行データ削除
-	DeleteRow(context.Context, *DeleteRowRequest) (*DeleteRowResponse, error)
 	// 検索
 	SearchRows(context.Context, *SearchRowsRequest) (*ListRowsResponse, error)
 	mustEmbedUnimplementedDtakoRowsServiceServer()
@@ -148,15 +103,6 @@ func (UnimplementedDtakoRowsServiceServer) GetRow(context.Context, *GetRowReques
 }
 func (UnimplementedDtakoRowsServiceServer) ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRows not implemented")
-}
-func (UnimplementedDtakoRowsServiceServer) CreateRow(context.Context, *CreateRowRequest) (*CreateRowResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateRow not implemented")
-}
-func (UnimplementedDtakoRowsServiceServer) UpdateRow(context.Context, *UpdateRowRequest) (*UpdateRowResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateRow not implemented")
-}
-func (UnimplementedDtakoRowsServiceServer) DeleteRow(context.Context, *DeleteRowRequest) (*DeleteRowResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRow not implemented")
 }
 func (UnimplementedDtakoRowsServiceServer) SearchRows(context.Context, *SearchRowsRequest) (*ListRowsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchRows not implemented")
@@ -218,60 +164,6 @@ func _DtakoRowsService_ListRows_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DtakoRowsService_CreateRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRowRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DtakoRowsServiceServer).CreateRow(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DtakoRowsService_CreateRow_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DtakoRowsServiceServer).CreateRow(ctx, req.(*CreateRowRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DtakoRowsService_UpdateRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRowRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DtakoRowsServiceServer).UpdateRow(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DtakoRowsService_UpdateRow_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DtakoRowsServiceServer).UpdateRow(ctx, req.(*UpdateRowRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DtakoRowsService_DeleteRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRowRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DtakoRowsServiceServer).DeleteRow(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DtakoRowsService_DeleteRow_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DtakoRowsServiceServer).DeleteRow(ctx, req.(*DeleteRowRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DtakoRowsService_SearchRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchRowsRequest)
 	if err := dec(in); err != nil {
@@ -304,18 +196,6 @@ var DtakoRowsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRows",
 			Handler:    _DtakoRowsService_ListRows_Handler,
-		},
-		{
-			MethodName: "CreateRow",
-			Handler:    _DtakoRowsService_CreateRow_Handler,
-		},
-		{
-			MethodName: "UpdateRow",
-			Handler:    _DtakoRowsService_UpdateRow_Handler,
-		},
-		{
-			MethodName: "DeleteRow",
-			Handler:    _DtakoRowsService_DeleteRow_Handler,
 		},
 		{
 			MethodName: "SearchRows",

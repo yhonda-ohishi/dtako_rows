@@ -1,13 +1,31 @@
 package registry
 
 import (
-	"github.com/yhonda-ohishi/dtako_rows/v2/pkg/server"
+	"log"
+
+	"github.com/yhonda-ohishi/dtako_rows/v2/internal/service"
+	pb "github.com/yhonda-ohishi/dtako_rows/v2/proto"
 	"google.golang.org/grpc"
 )
 
 // Register dtako_rowsサービスをgRPCサーバーに登録
-// 外部から呼び出し可能な公開API
-// DB接続は内部で管理され、環境変数から設定を読み込みます
+//
+// desktop-serverから呼び出され、単一プロセス内でサービス登録を行う。
+// このパターンにより、複数のサービスを1つのプロセスで管理できる。
+//
+// 登録されるサービス:
+//   - DtakoRowsService: 運行データ管理
+//
+// データアクセス:
+//   - db_service経由で行う（同一プロセス内gRPC呼び出し）
+//   - db_serviceがDB操作を担当し、このサービスはビジネスロジックのみ
 func Register(grpcServer *grpc.Server) error {
-	return server.Start(grpcServer)
+	log.Println("Registering dtako_rows service...")
+
+	// ビジネスロジックサービスのみ登録（DB接続不要）
+	svc := service.NewDtakoRowsService()
+	pb.RegisterDtakoRowsServiceServer(grpcServer, svc)
+
+	log.Println("dtako_rows service registered successfully")
+	return nil
 }
