@@ -44,7 +44,7 @@ func main() {
 	grpcServer := grpc.NewServer()
 
 	// サービス登録
-	dbgrpc.RegisterDTakoRowsServiceServer(grpcServer, dtakoRowsService)
+	dbgrpc.RegisterDb_DTakoRowsServiceServer(grpcServer, dtakoRowsService)
 	pb.RegisterDtakoRowsServiceServer(grpcServer, aggregationService)
 
 	// リフレクション登録（grpcurlなどのツール用）

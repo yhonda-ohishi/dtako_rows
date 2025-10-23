@@ -26,8 +26,8 @@ type FilterOptions struct {
 // DtakoRowsService gRPCサービス実装（読み取り専用）
 // データアクセスはdb_service経由で行う
 type DtakoRowsService struct {
-	dbgrpc.UnimplementedDTakoRowsServiceServer
-	dbClient dbgrpc.DTakoRowsServiceClient
+	dbgrpc.UnimplementedDb_DTakoRowsServiceServer
+	dbClient dbgrpc.Db_DTakoRowsServiceClient
 }
 
 // NewDtakoRowsService サービスの作成（スタンドアロン用）
@@ -39,7 +39,7 @@ func NewDtakoRowsService(dbServiceAddr string) (*DtakoRowsService, error) {
 		return nil, err
 	}
 
-	client := dbgrpc.NewDTakoRowsServiceClient(conn)
+	client := dbgrpc.NewDb_DTakoRowsServiceClient(conn)
 	log.Printf("Connected to db_service at %s", dbServiceAddr)
 
 	return &DtakoRowsService{
@@ -49,7 +49,7 @@ func NewDtakoRowsService(dbServiceAddr string) (*DtakoRowsService, error) {
 
 // NewDtakoRowsServiceWithClient サービスの作成（desktop-server統合用）
 // 既存のdb_serviceクライアントを受け取る
-func NewDtakoRowsServiceWithClient(client dbgrpc.DTakoRowsServiceClient) *DtakoRowsService {
+func NewDtakoRowsServiceWithClient(client dbgrpc.Db_DTakoRowsServiceClient) *DtakoRowsService {
 	log.Println("Creating dtako_rows service with existing db_service client")
 	return &DtakoRowsService{
 		dbClient: client,
@@ -57,7 +57,7 @@ func NewDtakoRowsServiceWithClient(client dbgrpc.DTakoRowsServiceClient) *DtakoR
 }
 
 // Get 運行データ取得
-func (s *DtakoRowsService) Get(ctx context.Context, req *dbpb.GetDTakoRowsRequest) (*dbpb.DTakoRowsResponse, error) {
+func (s *DtakoRowsService) Get(ctx context.Context, req *dbpb.Db_GetDTakoRowsRequest) (*dbpb.Db_DTakoRowsResponse, error) {
 	// ビジネスロジック: バリデーション
 	if req.Id == "" {
 		return nil, status.Error(codes.InvalidArgument, "id is required")
@@ -82,7 +82,7 @@ func (s *DtakoRowsService) Get(ctx context.Context, req *dbpb.GetDTakoRowsReques
 }
 
 // List 運行データ一覧取得
-func (s *DtakoRowsService) List(ctx context.Context, req *dbpb.ListDTakoRowsRequest) (*dbpb.ListDTakoRowsResponse, error) {
+func (s *DtakoRowsService) List(ctx context.Context, req *dbpb.Db_ListDTakoRowsRequest) (*dbpb.Db_ListDTakoRowsResponse, error) {
 	// ビジネスロジック: デフォルトのlimitとorder_byを設定
 	if req.Limit == 0 {
 		req.Limit = 100 // デフォルト100件
@@ -108,7 +108,7 @@ func (s *DtakoRowsService) List(ctx context.Context, req *dbpb.ListDTakoRowsRequ
 	// 1. 走行距離でフィルタリング
 	if req.Limit == 1 && req.Offset == 0 && req.OrderBy != nil && *req.OrderBy == "" {
 		// 特殊なリクエスト形式で集計モードを判定（将来的にはproto拡張が必要）
-		filteredItems := make([]*dbpb.DTakoRows, 0)
+		filteredItems := make([]*dbpb.Db_DTakoRows, 0)
 		for _, item := range resp.Items {
 			if item.TotalDistance > 0 {
 				filteredItems = append(filteredItems, item)
@@ -123,7 +123,7 @@ func (s *DtakoRowsService) List(ctx context.Context, req *dbpb.ListDTakoRowsRequ
 }
 
 // GetByOperationNo 運行NOで運行データ取得
-func (s *DtakoRowsService) GetByOperationNo(ctx context.Context, req *dbpb.GetDTakoRowsByOperationNoRequest) (*dbpb.ListDTakoRowsResponse, error) {
+func (s *DtakoRowsService) GetByOperationNo(ctx context.Context, req *dbpb.Db_GetDTakoRowsByOperationNoRequest) (*dbpb.Db_ListDTakoRowsResponse, error) {
 	// ビジネスロジック: バリデーション
 	if req.OperationNo == "" {
 		return nil, status.Error(codes.InvalidArgument, "operation_no is required")
@@ -146,16 +146,16 @@ func (s *DtakoRowsService) GetByOperationNo(ctx context.Context, req *dbpb.GetDT
 //
 // サービス層でフィルタリングを行います。
 // db_serviceにフィルタ機能がない場合でも、このメソッドで柔軟なフィルタリングが可能です。
-func (s *DtakoRowsService) ListWithFilter(ctx context.Context, filter *FilterOptions, limit int32, offset int32) ([]*dbpb.DTakoRows, int32, error) {
+func (s *DtakoRowsService) ListWithFilter(ctx context.Context, filter *FilterOptions, limit int32, offset int32) ([]*dbpb.Db_DTakoRows, int32, error) {
 	log.Printf("ListWithFilter: limit=%d, offset=%d", limit, offset)
 
 	// ページネーションで全データを取得
-	req := &dbpb.ListDTakoRowsRequest{
+	req := &dbpb.Db_ListDTakoRowsRequest{
 		Limit:  1000, // 大きめのバッチサイズ
 		Offset: 0,
 	}
 
-	allRows := make([]*dbpb.DTakoRows, 0)
+	allRows := make([]*dbpb.Db_DTakoRows, 0)
 	totalFetched := int32(0)
 
 	for {
@@ -194,7 +194,7 @@ func (s *DtakoRowsService) ListWithFilter(ctx context.Context, filter *FilterOpt
 	endIdx := offset + limit
 
 	if startIdx > totalCount {
-		return []*dbpb.DTakoRows{}, totalCount, nil
+		return []*dbpb.Db_DTakoRows{}, totalCount, nil
 	}
 	if endIdx > totalCount {
 		endIdx = totalCount
@@ -207,7 +207,7 @@ func (s *DtakoRowsService) ListWithFilter(ctx context.Context, filter *FilterOpt
 }
 
 // matchesFilter 単一行がフィルタ条件に一致するかチェック
-func (s *DtakoRowsService) matchesFilter(row *dbpb.DTakoRows, filter *FilterOptions) bool {
+func (s *DtakoRowsService) matchesFilter(row *dbpb.Db_DTakoRows, filter *FilterOptions) bool {
 	if filter == nil {
 		return true
 	}
@@ -261,7 +261,7 @@ func (s *DtakoRowsService) matchesFilter(row *dbpb.DTakoRows, filter *FilterOpti
 }
 
 // ListByCarCC 車輌CCで絞り込んだデータ取得（ヘルパーメソッド）
-func (s *DtakoRowsService) ListByCarCC(ctx context.Context, carCC string, limit int32) ([]*dbpb.DTakoRows, error) {
+func (s *DtakoRowsService) ListByCarCC(ctx context.Context, carCC string, limit int32) ([]*dbpb.Db_DTakoRows, error) {
 	filter := &FilterOptions{
 		CarCC: &carCC,
 	}
@@ -270,7 +270,7 @@ func (s *DtakoRowsService) ListByCarCC(ctx context.Context, carCC string, limit 
 }
 
 // ListByDateRange 日付範囲で絞り込んだデータ取得（ヘルパーメソッド）
-func (s *DtakoRowsService) ListByDateRange(ctx context.Context, startDate, endDate string, limit int32) ([]*dbpb.DTakoRows, error) {
+func (s *DtakoRowsService) ListByDateRange(ctx context.Context, startDate, endDate string, limit int32) ([]*dbpb.Db_DTakoRows, error) {
 	start, err := time.Parse("2006-01-02", startDate)
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid start_date format: %v", err)
@@ -289,7 +289,7 @@ func (s *DtakoRowsService) ListByDateRange(ctx context.Context, startDate, endDa
 }
 
 // ListByCarCCAndDateRange 車輌CCと日付範囲で絞り込んだデータ取得（ヘルパーメソッド）
-func (s *DtakoRowsService) ListByCarCCAndDateRange(ctx context.Context, carCC, startDate, endDate string, limit int32) ([]*dbpb.DTakoRows, error) {
+func (s *DtakoRowsService) ListByCarCCAndDateRange(ctx context.Context, carCC, startDate, endDate string, limit int32) ([]*dbpb.Db_DTakoRows, error) {
 	start, err := time.Parse("2006-01-02", startDate)
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "invalid start_date format: %v", err)

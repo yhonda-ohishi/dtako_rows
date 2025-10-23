@@ -22,7 +22,7 @@ import (
 //   - db_serviceがDB操作を担当し、このサービスは透過的にプロキシする
 //
 // 使い方（desktop-server内）:
-//   dtakoRowsClient := dbgrpc.NewDTakoRowsServiceClient(localConn)  // 同一プロセス内接続
+//   dtakoRowsClient := dbgrpc.NewDb_DTakoRowsServiceClient(localConn)  // 同一プロセス内接続
 //   dtako_rows_registry.RegisterWithClient(grpcServer, dtakoRowsClient)
 func Register(grpcServer *grpc.Server, dbServiceAddr string) error {
 	log.Println("Registering dtako_rows service...")
@@ -33,7 +33,7 @@ func Register(grpcServer *grpc.Server, dbServiceAddr string) error {
 		log.Printf("Failed to create dtako_rows service: %v", err)
 		return err
 	}
-	dbgrpc.RegisterDTakoRowsServiceServer(grpcServer, svc)
+	dbgrpc.RegisterDb_DTakoRowsServiceServer(grpcServer, svc)
 
 	log.Println("dtako_rows service registered successfully")
 	return nil
@@ -42,12 +42,12 @@ func Register(grpcServer *grpc.Server, dbServiceAddr string) error {
 // RegisterWithClient 既存のdb_serviceクライアントを使ってサービスを登録（desktop-server統合用）
 //
 // desktop-server内で同一プロセスのdb_serviceに接続する場合に使用
-func RegisterWithClient(grpcServer *grpc.Server, dbClient dbgrpc.DTakoRowsServiceClient) {
+func RegisterWithClient(grpcServer *grpc.Server, dbClient dbgrpc.Db_DTakoRowsServiceClient) {
 	log.Println("Registering dtako_rows services with existing db_service client...")
 
 	// 既存クライアントを使ってサービスを作成
 	svc := service.NewDtakoRowsServiceWithClient(dbClient)
-	dbgrpc.RegisterDTakoRowsServiceServer(grpcServer, svc)
+	dbgrpc.RegisterDb_DTakoRowsServiceServer(grpcServer, svc)
 
 	// 集計サービスも登録
 	aggSvc := service.NewDtakoRowsAggregationServiceWithClient(dbClient)

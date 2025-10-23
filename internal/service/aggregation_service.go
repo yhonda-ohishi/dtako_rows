@@ -12,7 +12,7 @@ import (
 // DtakoRowsAggregationService 集計サービス実装
 type DtakoRowsAggregationService struct {
 	pb.UnimplementedDtakoRowsServiceServer
-	dbClient dbgrpc.DTakoRowsServiceClient
+	dbClient dbgrpc.Db_DTakoRowsServiceClient
 }
 
 // NewDtakoRowsAggregationService 集計サービスの作成（スタンドアロン用）
@@ -29,7 +29,7 @@ func NewDtakoRowsAggregationService(dbServiceAddr string) (*DtakoRowsAggregation
 }
 
 // NewDtakoRowsAggregationServiceWithClient 集計サービスの作成（desktop-server統合用）
-func NewDtakoRowsAggregationServiceWithClient(client dbgrpc.DTakoRowsServiceClient) *DtakoRowsAggregationService {
+func NewDtakoRowsAggregationServiceWithClient(client dbgrpc.Db_DTakoRowsServiceClient) *DtakoRowsAggregationService {
 	log.Println("Creating dtako_rows aggregation service with existing db_service client")
 	return &DtakoRowsAggregationService{
 		dbClient: client,

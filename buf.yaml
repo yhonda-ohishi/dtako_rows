@@ -3,7 +3,7 @@ modules:
   - path: proto
     name: buf.build/yhonda-ohishi/dtako-rows
 deps:
-  - buf.build/yhonda-ohishi/db-service
+  - buf.build/yhonda-ohishi/db-service:v1.7.5
 lint:
   use:
     - STANDARD
