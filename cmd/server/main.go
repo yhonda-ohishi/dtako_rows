@@ -45,7 +45,7 @@ func main() {
 
 	// サービス登録
 	dbgrpc.RegisterDTakoRowsServiceServer(grpcServer, dtakoRowsService)
-	pb.RegisterDtakoRowsAggregationServiceServer(grpcServer, aggregationService)
+	pb.RegisterDtakoRowsServiceServer(grpcServer, aggregationService)
 
 	// リフレクション登録（grpcurlなどのツール用）
 	reflection.Register(grpcServer)
@@ -76,7 +76,7 @@ func main() {
 	log.Printf("Starting gRPC server on port %s...", port)
 	log.Printf("Services registered:")
 	log.Printf("  - DTakoRowsService (proxy to db_service at %s)", dbServiceAddr)
-	log.Printf("  - DtakoRowsAggregationService (aggregation logic)")
+	log.Printf("  - DtakoRowsService (aggregation logic)")
 
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package dtako_rows_aggregation;
+package dtako_rows;
 
-option go_package = "github.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows_aggregation";
+option go_package = "github.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows";
 
-// DtakoRowsAggregationService - 運行データ集計サービス
-service DtakoRowsAggregationService {
+// DtakoRowsService - 運行データ集計サービス
+service DtakoRowsService {
   // 車両ごとの月次給油量集計
   rpc GetMonthlyFuelConsumption(GetMonthlyFuelConsumptionRequest) returns (MonthlyFuelConsumptionResponse);
 

@@ -11,7 +11,7 @@ import (
 
 // DtakoRowsAggregationService 集計サービス実装
 type DtakoRowsAggregationService struct {
-	pb.UnimplementedDtakoRowsAggregationServiceServer
+	pb.UnimplementedDtakoRowsServiceServer
 	dbClient dbgrpc.DTakoRowsServiceClient
 }
 

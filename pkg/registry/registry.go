@@ -51,7 +51,7 @@ func RegisterWithClient(grpcServer *grpc.Server, dbClient dbgrpc.DTakoRowsServic
 
 	// 集計サービスも登録
 	aggSvc := service.NewDtakoRowsAggregationServiceWithClient(dbClient)
-	pb.RegisterDtakoRowsAggregationServiceServer(grpcServer, aggSvc)
+	pb.RegisterDtakoRowsServiceServer(grpcServer, aggSvc)
 
-	log.Println("dtako_rows services registered successfully (DTakoRowsService + DtakoRowsAggregationService)")
+	log.Println("dtako_rows services registered successfully (DTakoRowsService + DtakoRowsService)")
 }

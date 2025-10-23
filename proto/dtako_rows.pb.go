@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        (unknown)
-// source: dtako_rows_aggregation.proto
+// source: dtako_rows.proto
 
-package dtako_rows_aggregation
+package dtako_rows
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -36,7 +36,7 @@ type MonthlyFuelSummary struct {
 
 func (x *MonthlyFuelSummary) Reset() {
 	*x = MonthlyFuelSummary{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[0]
+	mi := &file_dtako_rows_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *MonthlyFuelSummary) String() string {
 func (*MonthlyFuelSummary) ProtoMessage() {}
 
 func (x *MonthlyFuelSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[0]
+	mi := &file_dtako_rows_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *MonthlyFuelSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MonthlyFuelSummary.ProtoReflect.Descriptor instead.
 func (*MonthlyFuelSummary) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{0}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *MonthlyFuelSummary) GetCarCc() string {
@@ -118,7 +118,7 @@ type GetMonthlyFuelConsumptionRequest struct {
 
 func (x *GetMonthlyFuelConsumptionRequest) Reset() {
 	*x = GetMonthlyFuelConsumptionRequest{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[1]
+	mi := &file_dtako_rows_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -130,7 +130,7 @@ func (x *GetMonthlyFuelConsumptionRequest) String() string {
 func (*GetMonthlyFuelConsumptionRequest) ProtoMessage() {}
 
 func (x *GetMonthlyFuelConsumptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[1]
+	mi := &file_dtako_rows_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +143,7 @@ func (x *GetMonthlyFuelConsumptionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMonthlyFuelConsumptionRequest.ProtoReflect.Descriptor instead.
 func (*GetMonthlyFuelConsumptionRequest) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{1}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetMonthlyFuelConsumptionRequest) GetCarCc() string {
@@ -179,7 +179,7 @@ type MonthlyFuelConsumptionResponse struct {
 
 func (x *MonthlyFuelConsumptionResponse) Reset() {
 	*x = MonthlyFuelConsumptionResponse{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[2]
+	mi := &file_dtako_rows_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -191,7 +191,7 @@ func (x *MonthlyFuelConsumptionResponse) String() string {
 func (*MonthlyFuelConsumptionResponse) ProtoMessage() {}
 
 func (x *MonthlyFuelConsumptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[2]
+	mi := &file_dtako_rows_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -204,7 +204,7 @@ func (x *MonthlyFuelConsumptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MonthlyFuelConsumptionResponse.ProtoReflect.Descriptor instead.
 func (*MonthlyFuelConsumptionResponse) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{2}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *MonthlyFuelConsumptionResponse) GetSummaries() []*MonthlyFuelSummary {
@@ -239,7 +239,7 @@ type GetVehicleMonthlySummaryRequest struct {
 
 func (x *GetVehicleMonthlySummaryRequest) Reset() {
 	*x = GetVehicleMonthlySummaryRequest{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[3]
+	mi := &file_dtako_rows_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -251,7 +251,7 @@ func (x *GetVehicleMonthlySummaryRequest) String() string {
 func (*GetVehicleMonthlySummaryRequest) ProtoMessage() {}
 
 func (x *GetVehicleMonthlySummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[3]
+	mi := &file_dtako_rows_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -264,7 +264,7 @@ func (x *GetVehicleMonthlySummaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVehicleMonthlySummaryRequest.ProtoReflect.Descriptor instead.
 func (*GetVehicleMonthlySummaryRequest) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{3}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetVehicleMonthlySummaryRequest) GetStartDate() string {
@@ -292,7 +292,7 @@ type VehicleMonthlySummaries struct {
 
 func (x *VehicleMonthlySummaries) Reset() {
 	*x = VehicleMonthlySummaries{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[4]
+	mi := &file_dtako_rows_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -304,7 +304,7 @@ func (x *VehicleMonthlySummaries) String() string {
 func (*VehicleMonthlySummaries) ProtoMessage() {}
 
 func (x *VehicleMonthlySummaries) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[4]
+	mi := &file_dtako_rows_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -317,7 +317,7 @@ func (x *VehicleMonthlySummaries) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VehicleMonthlySummaries.ProtoReflect.Descriptor instead.
 func (*VehicleMonthlySummaries) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{4}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *VehicleMonthlySummaries) GetCarCc() string {
@@ -346,7 +346,7 @@ type VehicleMonthlySummaryResponse struct {
 
 func (x *VehicleMonthlySummaryResponse) Reset() {
 	*x = VehicleMonthlySummaryResponse{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[5]
+	mi := &file_dtako_rows_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -358,7 +358,7 @@ func (x *VehicleMonthlySummaryResponse) String() string {
 func (*VehicleMonthlySummaryResponse) ProtoMessage() {}
 
 func (x *VehicleMonthlySummaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[5]
+	mi := &file_dtako_rows_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -371,7 +371,7 @@ func (x *VehicleMonthlySummaryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VehicleMonthlySummaryResponse.ProtoReflect.Descriptor instead.
 func (*VehicleMonthlySummaryResponse) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{5}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *VehicleMonthlySummaryResponse) GetVehicleSummaries() []*VehicleMonthlySummaries {
@@ -407,7 +407,7 @@ type GetDailySummaryRequest struct {
 
 func (x *GetDailySummaryRequest) Reset() {
 	*x = GetDailySummaryRequest{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[6]
+	mi := &file_dtako_rows_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -419,7 +419,7 @@ func (x *GetDailySummaryRequest) String() string {
 func (*GetDailySummaryRequest) ProtoMessage() {}
 
 func (x *GetDailySummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[6]
+	mi := &file_dtako_rows_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -432,7 +432,7 @@ func (x *GetDailySummaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDailySummaryRequest.ProtoReflect.Descriptor instead.
 func (*GetDailySummaryRequest) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{6}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetDailySummaryRequest) GetCarCc() string {
@@ -470,7 +470,7 @@ type DailySummary struct {
 
 func (x *DailySummary) Reset() {
 	*x = DailySummary{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[7]
+	mi := &file_dtako_rows_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -482,7 +482,7 @@ func (x *DailySummary) String() string {
 func (*DailySummary) ProtoMessage() {}
 
 func (x *DailySummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[7]
+	mi := &file_dtako_rows_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -495,7 +495,7 @@ func (x *DailySummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DailySummary.ProtoReflect.Descriptor instead.
 func (*DailySummary) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{7}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DailySummary) GetCarCc() string {
@@ -545,7 +545,7 @@ type DailySummaryResponse struct {
 
 func (x *DailySummaryResponse) Reset() {
 	*x = DailySummaryResponse{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[8]
+	mi := &file_dtako_rows_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +557,7 @@ func (x *DailySummaryResponse) String() string {
 func (*DailySummaryResponse) ProtoMessage() {}
 
 func (x *DailySummaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[8]
+	mi := &file_dtako_rows_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +570,7 @@ func (x *DailySummaryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DailySummaryResponse.ProtoReflect.Descriptor instead.
 func (*DailySummaryResponse) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{8}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DailySummaryResponse) GetSummaries() []*DailySummary {
@@ -605,7 +605,7 @@ type ExportCSVResponse struct {
 
 func (x *ExportCSVResponse) Reset() {
 	*x = ExportCSVResponse{}
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[9]
+	mi := &file_dtako_rows_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -617,7 +617,7 @@ func (x *ExportCSVResponse) String() string {
 func (*ExportCSVResponse) ProtoMessage() {}
 
 func (x *ExportCSVResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dtako_rows_aggregation_proto_msgTypes[9]
+	mi := &file_dtako_rows_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -630,7 +630,7 @@ func (x *ExportCSVResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportCSVResponse.ProtoReflect.Descriptor instead.
 func (*ExportCSVResponse) Descriptor() ([]byte, []int) {
-	return file_dtako_rows_aggregation_proto_rawDescGZIP(), []int{9}
+	return file_dtako_rows_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ExportCSVResponse) GetCsvData() string {
@@ -647,11 +647,12 @@ func (x *ExportCSVResponse) GetFilename() string {
 	return ""
 }
 
-var File_dtako_rows_aggregation_proto protoreflect.FileDescriptor
+var File_dtako_rows_proto protoreflect.FileDescriptor
 
-const file_dtako_rows_aggregation_proto_rawDesc = "" +
+const file_dtako_rows_proto_rawDesc = "" +
 	"\n" +
-	"\x1cdtako_rows_aggregation.proto\x12\x16dtako_rows_aggregation\"\xdf\x01\n" +
+	"\x10dtako_rows.proto\x12\n" +
+	"dtako_rows\"\xdf\x01\n" +
 	"\x12MonthlyFuelSummary\x12\x15\n" +
 	"\x06car_cc\x18\x01 \x01(\tR\x05carCc\x12\x1d\n" +
 	"\n" +
@@ -666,20 +667,20 @@ const file_dtako_rows_aggregation_proto_rawDesc = "" +
 	"\x06car_cc\x18\x01 \x01(\tR\x05carCc\x12\x1d\n" +
 	"\n" +
 	"start_date\x18\x02 \x01(\tR\tstartDate\x12\x19\n" +
-	"\bend_date\x18\x03 \x01(\tR\aendDate\"\x99\x01\n" +
-	"\x1eMonthlyFuelConsumptionResponse\x12H\n" +
-	"\tsummaries\x18\x01 \x03(\v2*.dtako_rows_aggregation.MonthlyFuelSummaryR\tsummaries\x12\x15\n" +
+	"\bend_date\x18\x03 \x01(\tR\aendDate\"\x8d\x01\n" +
+	"\x1eMonthlyFuelConsumptionResponse\x12<\n" +
+	"\tsummaries\x18\x01 \x03(\v2\x1e.dtako_rows.MonthlyFuelSummaryR\tsummaries\x12\x15\n" +
 	"\x06car_cc\x18\x02 \x01(\tR\x05carCc\x12\x16\n" +
 	"\x06period\x18\x03 \x01(\tR\x06period\"[\n" +
 	"\x1fGetVehicleMonthlySummaryRequest\x12\x1d\n" +
 	"\n" +
 	"start_date\x18\x01 \x01(\tR\tstartDate\x12\x19\n" +
-	"\bend_date\x18\x02 \x01(\tR\aendDate\"z\n" +
+	"\bend_date\x18\x02 \x01(\tR\aendDate\"n\n" +
 	"\x17VehicleMonthlySummaries\x12\x15\n" +
-	"\x06car_cc\x18\x01 \x01(\tR\x05carCc\x12H\n" +
-	"\tsummaries\x18\x02 \x03(\v2*.dtako_rows_aggregation.MonthlyFuelSummaryR\tsummaries\"\xbc\x01\n" +
-	"\x1dVehicleMonthlySummaryResponse\x12\\\n" +
-	"\x11vehicle_summaries\x18\x01 \x03(\v2/.dtako_rows_aggregation.VehicleMonthlySummariesR\x10vehicleSummaries\x12%\n" +
+	"\x06car_cc\x18\x01 \x01(\tR\x05carCc\x12<\n" +
+	"\tsummaries\x18\x02 \x03(\v2\x1e.dtako_rows.MonthlyFuelSummaryR\tsummaries\"\xb0\x01\n" +
+	"\x1dVehicleMonthlySummaryResponse\x12P\n" +
+	"\x11vehicle_summaries\x18\x01 \x03(\v2#.dtako_rows.VehicleMonthlySummariesR\x10vehicleSummaries\x12%\n" +
 	"\x0etotal_vehicles\x18\x02 \x01(\x05R\rtotalVehicles\x12\x16\n" +
 	"\x06period\x18\x03 \x01(\tR\x06period\"i\n" +
 	"\x16GetDailySummaryRequest\x12\x15\n" +
@@ -694,58 +695,59 @@ const file_dtako_rows_aggregation_proto_rawDesc = "" +
 	"\n" +
 	"total_fuel\x18\x04 \x01(\x01R\ttotalFuel\x12\x1d\n" +
 	"\n" +
-	"trip_count\x18\x05 \x01(\x05R\ttripCount\"\x89\x01\n" +
-	"\x14DailySummaryResponse\x12B\n" +
-	"\tsummaries\x18\x01 \x03(\v2$.dtako_rows_aggregation.DailySummaryR\tsummaries\x12\x15\n" +
+	"trip_count\x18\x05 \x01(\x05R\ttripCount\"}\n" +
+	"\x14DailySummaryResponse\x126\n" +
+	"\tsummaries\x18\x01 \x03(\v2\x18.dtako_rows.DailySummaryR\tsummaries\x12\x15\n" +
 	"\x06car_cc\x18\x02 \x01(\tR\x05carCc\x12\x16\n" +
 	"\x06period\x18\x03 \x01(\tR\x06period\"J\n" +
 	"\x11ExportCSVResponse\x12\x19\n" +
 	"\bcsv_data\x18\x01 \x01(\tR\acsvData\x12\x1a\n" +
-	"\bfilename\x18\x02 \x01(\tR\bfilename2\xa8\x04\n" +
-	"\x1bDtakoRowsAggregationService\x12\x8d\x01\n" +
-	"\x19GetMonthlyFuelConsumption\x128.dtako_rows_aggregation.GetMonthlyFuelConsumptionRequest\x1a6.dtako_rows_aggregation.MonthlyFuelConsumptionResponse\x12\x8a\x01\n" +
-	"\x18GetVehicleMonthlySummary\x127.dtako_rows_aggregation.GetVehicleMonthlySummaryRequest\x1a5.dtako_rows_aggregation.VehicleMonthlySummaryResponse\x12o\n" +
-	"\x0fGetDailySummary\x12..dtako_rows_aggregation.GetDailySummaryRequest\x1a,.dtako_rows_aggregation.DailySummaryResponse\x12{\n" +
-	"\x14ExportMonthlyFuelCSV\x128.dtako_rows_aggregation.GetMonthlyFuelConsumptionRequest\x1a).dtako_rows_aggregation.ExportCSVResponseBEZCgithub.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows_aggregationb\x06proto3"
+	"\bfilename\x18\x02 \x01(\tR\bfilename2\xbb\x03\n" +
+	"\x10DtakoRowsService\x12u\n" +
+	"\x19GetMonthlyFuelConsumption\x12,.dtako_rows.GetMonthlyFuelConsumptionRequest\x1a*.dtako_rows.MonthlyFuelConsumptionResponse\x12r\n" +
+	"\x18GetVehicleMonthlySummary\x12+.dtako_rows.GetVehicleMonthlySummaryRequest\x1a).dtako_rows.VehicleMonthlySummaryResponse\x12W\n" +
+	"\x0fGetDailySummary\x12\".dtako_rows.GetDailySummaryRequest\x1a .dtako_rows.DailySummaryResponse\x12c\n" +
+	"\x14ExportMonthlyFuelCSV\x12,.dtako_rows.GetMonthlyFuelConsumptionRequest\x1a\x1d.dtako_rows.ExportCSVResponseB\x9d\x01\n" +
+	"\x0ecom.dtako_rowsB\x0eDtakoRowsProtoP\x01Z7github.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows\xa2\x02\x03DXX\xaa\x02\tDtakoRows\xca\x02\tDtakoRows\xe2\x02\x15DtakoRows\\GPBMetadata\xea\x02\tDtakoRowsb\x06proto3"
 
 var (
-	file_dtako_rows_aggregation_proto_rawDescOnce sync.Once
-	file_dtako_rows_aggregation_proto_rawDescData []byte
+	file_dtako_rows_proto_rawDescOnce sync.Once
+	file_dtako_rows_proto_rawDescData []byte
 )
 
-func file_dtako_rows_aggregation_proto_rawDescGZIP() []byte {
-	file_dtako_rows_aggregation_proto_rawDescOnce.Do(func() {
-		file_dtako_rows_aggregation_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_dtako_rows_aggregation_proto_rawDesc), len(file_dtako_rows_aggregation_proto_rawDesc)))
+func file_dtako_rows_proto_rawDescGZIP() []byte {
+	file_dtako_rows_proto_rawDescOnce.Do(func() {
+		file_dtako_rows_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_dtako_rows_proto_rawDesc), len(file_dtako_rows_proto_rawDesc)))
 	})
-	return file_dtako_rows_aggregation_proto_rawDescData
+	return file_dtako_rows_proto_rawDescData
 }
 
-var file_dtako_rows_aggregation_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_dtako_rows_aggregation_proto_goTypes = []any{
-	(*MonthlyFuelSummary)(nil),               // 0: dtako_rows_aggregation.MonthlyFuelSummary
-	(*GetMonthlyFuelConsumptionRequest)(nil), // 1: dtako_rows_aggregation.GetMonthlyFuelConsumptionRequest
-	(*MonthlyFuelConsumptionResponse)(nil),   // 2: dtako_rows_aggregation.MonthlyFuelConsumptionResponse
-	(*GetVehicleMonthlySummaryRequest)(nil),  // 3: dtako_rows_aggregation.GetVehicleMonthlySummaryRequest
-	(*VehicleMonthlySummaries)(nil),          // 4: dtako_rows_aggregation.VehicleMonthlySummaries
-	(*VehicleMonthlySummaryResponse)(nil),    // 5: dtako_rows_aggregation.VehicleMonthlySummaryResponse
-	(*GetDailySummaryRequest)(nil),           // 6: dtako_rows_aggregation.GetDailySummaryRequest
-	(*DailySummary)(nil),                     // 7: dtako_rows_aggregation.DailySummary
-	(*DailySummaryResponse)(nil),             // 8: dtako_rows_aggregation.DailySummaryResponse
-	(*ExportCSVResponse)(nil),                // 9: dtako_rows_aggregation.ExportCSVResponse
+var file_dtako_rows_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_dtako_rows_proto_goTypes = []any{
+	(*MonthlyFuelSummary)(nil),               // 0: dtako_rows.MonthlyFuelSummary
+	(*GetMonthlyFuelConsumptionRequest)(nil), // 1: dtako_rows.GetMonthlyFuelConsumptionRequest
+	(*MonthlyFuelConsumptionResponse)(nil),   // 2: dtako_rows.MonthlyFuelConsumptionResponse
+	(*GetVehicleMonthlySummaryRequest)(nil),  // 3: dtako_rows.GetVehicleMonthlySummaryRequest
+	(*VehicleMonthlySummaries)(nil),          // 4: dtako_rows.VehicleMonthlySummaries
+	(*VehicleMonthlySummaryResponse)(nil),    // 5: dtako_rows.VehicleMonthlySummaryResponse
+	(*GetDailySummaryRequest)(nil),           // 6: dtako_rows.GetDailySummaryRequest
+	(*DailySummary)(nil),                     // 7: dtako_rows.DailySummary
+	(*DailySummaryResponse)(nil),             // 8: dtako_rows.DailySummaryResponse
+	(*ExportCSVResponse)(nil),                // 9: dtako_rows.ExportCSVResponse
 }
-var file_dtako_rows_aggregation_proto_depIdxs = []int32{
-	0, // 0: dtako_rows_aggregation.MonthlyFuelConsumptionResponse.summaries:type_name -> dtako_rows_aggregation.MonthlyFuelSummary
-	0, // 1: dtako_rows_aggregation.VehicleMonthlySummaries.summaries:type_name -> dtako_rows_aggregation.MonthlyFuelSummary
-	4, // 2: dtako_rows_aggregation.VehicleMonthlySummaryResponse.vehicle_summaries:type_name -> dtako_rows_aggregation.VehicleMonthlySummaries
-	7, // 3: dtako_rows_aggregation.DailySummaryResponse.summaries:type_name -> dtako_rows_aggregation.DailySummary
-	1, // 4: dtako_rows_aggregation.DtakoRowsAggregationService.GetMonthlyFuelConsumption:input_type -> dtako_rows_aggregation.GetMonthlyFuelConsumptionRequest
-	3, // 5: dtako_rows_aggregation.DtakoRowsAggregationService.GetVehicleMonthlySummary:input_type -> dtako_rows_aggregation.GetVehicleMonthlySummaryRequest
-	6, // 6: dtako_rows_aggregation.DtakoRowsAggregationService.GetDailySummary:input_type -> dtako_rows_aggregation.GetDailySummaryRequest
-	1, // 7: dtako_rows_aggregation.DtakoRowsAggregationService.ExportMonthlyFuelCSV:input_type -> dtako_rows_aggregation.GetMonthlyFuelConsumptionRequest
-	2, // 8: dtako_rows_aggregation.DtakoRowsAggregationService.GetMonthlyFuelConsumption:output_type -> dtako_rows_aggregation.MonthlyFuelConsumptionResponse
-	5, // 9: dtako_rows_aggregation.DtakoRowsAggregationService.GetVehicleMonthlySummary:output_type -> dtako_rows_aggregation.VehicleMonthlySummaryResponse
-	8, // 10: dtako_rows_aggregation.DtakoRowsAggregationService.GetDailySummary:output_type -> dtako_rows_aggregation.DailySummaryResponse
-	9, // 11: dtako_rows_aggregation.DtakoRowsAggregationService.ExportMonthlyFuelCSV:output_type -> dtako_rows_aggregation.ExportCSVResponse
+var file_dtako_rows_proto_depIdxs = []int32{
+	0, // 0: dtako_rows.MonthlyFuelConsumptionResponse.summaries:type_name -> dtako_rows.MonthlyFuelSummary
+	0, // 1: dtako_rows.VehicleMonthlySummaries.summaries:type_name -> dtako_rows.MonthlyFuelSummary
+	4, // 2: dtako_rows.VehicleMonthlySummaryResponse.vehicle_summaries:type_name -> dtako_rows.VehicleMonthlySummaries
+	7, // 3: dtako_rows.DailySummaryResponse.summaries:type_name -> dtako_rows.DailySummary
+	1, // 4: dtako_rows.DtakoRowsService.GetMonthlyFuelConsumption:input_type -> dtako_rows.GetMonthlyFuelConsumptionRequest
+	3, // 5: dtako_rows.DtakoRowsService.GetVehicleMonthlySummary:input_type -> dtako_rows.GetVehicleMonthlySummaryRequest
+	6, // 6: dtako_rows.DtakoRowsService.GetDailySummary:input_type -> dtako_rows.GetDailySummaryRequest
+	1, // 7: dtako_rows.DtakoRowsService.ExportMonthlyFuelCSV:input_type -> dtako_rows.GetMonthlyFuelConsumptionRequest
+	2, // 8: dtako_rows.DtakoRowsService.GetMonthlyFuelConsumption:output_type -> dtako_rows.MonthlyFuelConsumptionResponse
+	5, // 9: dtako_rows.DtakoRowsService.GetVehicleMonthlySummary:output_type -> dtako_rows.VehicleMonthlySummaryResponse
+	8, // 10: dtako_rows.DtakoRowsService.GetDailySummary:output_type -> dtako_rows.DailySummaryResponse
+	9, // 11: dtako_rows.DtakoRowsService.ExportMonthlyFuelCSV:output_type -> dtako_rows.ExportCSVResponse
 	8, // [8:12] is the sub-list for method output_type
 	4, // [4:8] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -753,26 +755,26 @@ var file_dtako_rows_aggregation_proto_depIdxs = []int32{
 	0, // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_dtako_rows_aggregation_proto_init() }
-func file_dtako_rows_aggregation_proto_init() {
-	if File_dtako_rows_aggregation_proto != nil {
+func init() { file_dtako_rows_proto_init() }
+func file_dtako_rows_proto_init() {
+	if File_dtako_rows_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dtako_rows_aggregation_proto_rawDesc), len(file_dtako_rows_aggregation_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dtako_rows_proto_rawDesc), len(file_dtako_rows_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_dtako_rows_aggregation_proto_goTypes,
-		DependencyIndexes: file_dtako_rows_aggregation_proto_depIdxs,
-		MessageInfos:      file_dtako_rows_aggregation_proto_msgTypes,
+		GoTypes:           file_dtako_rows_proto_goTypes,
+		DependencyIndexes: file_dtako_rows_proto_depIdxs,
+		MessageInfos:      file_dtako_rows_proto_msgTypes,
 	}.Build()
-	File_dtako_rows_aggregation_proto = out.File
-	file_dtako_rows_aggregation_proto_goTypes = nil
-	file_dtako_rows_aggregation_proto_depIdxs = nil
+	File_dtako_rows_proto = out.File
+	file_dtako_rows_proto_goTypes = nil
+	file_dtako_rows_proto_depIdxs = nil
 }
