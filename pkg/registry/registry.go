@@ -24,8 +24,11 @@ import (
 // 使い方（desktop-server内）:
 //   dtakoRowsClient := dbgrpc.NewDb_DTakoRowsServiceClient(localConn)  // 同一プロセス内接続
 //   dtako_rows_registry.RegisterWithClient(grpcServer, dtakoRowsClient)
-func Register(grpcServer *grpc.Server, dbServiceAddr string) error {
+func Register(grpcServer *grpc.Server) error {
 	log.Println("Registering dtako_rows service...")
+
+	// デフォルトのdb_serviceアドレス（同一ホスト）
+	dbServiceAddr := "localhost:50051"
 
 	// db_serviceへのプロキシサービスを登録（外部接続）
 	svc, err := service.NewDtakoRowsService(dbServiceAddr)
