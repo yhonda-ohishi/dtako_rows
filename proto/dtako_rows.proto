@@ -17,6 +17,12 @@ service DtakoRowsService {
 
   // CSV形式でエクスポート
   rpc ExportMonthlyFuelCSV(GetMonthlyFuelConsumptionRequest) returns (ExportCSVResponse);
+
+  // 運行データ取得（db_serviceプロキシ）
+  rpc GetRow(GetRowRequest) returns (RowResponse);
+
+  // 運行データ一覧取得（db_serviceプロキシ）
+  rpc ListRows(ListRowsRequest) returns (ListRowsResponse);
 }
 
 // 月次給油量サマリー
@@ -89,4 +95,50 @@ message DailySummaryResponse {
 message ExportCSVResponse {
   string csv_data = 1;  // CSV形式のデータ
   string filename = 2;   // 推奨ファイル名
+}
+
+// === db_serviceプロキシ用メッセージ ===
+
+// 運行データ取得リクエスト
+message GetRowRequest {
+  string id = 1;  // 運行データID
+}
+
+// 運行データレスポンス
+message RowResponse {
+  Row row = 1;
+}
+
+// 運行データ一覧取得リクエスト
+message ListRowsRequest {
+  int32 limit = 1;   // 取得件数上限
+  int32 offset = 2;  // オフセット
+  optional string order_by = 3;  // ソート順
+}
+
+// 運行データ一覧レスポンス
+message ListRowsResponse {
+  repeated Row rows = 1;
+  int32 total_count = 2;
+}
+
+// 運行データ
+message Row {
+  string id = 1;
+  string operation_no = 2;
+  string read_date = 3;
+  string operation_date = 4;
+  int32 car_code = 5;
+  string car_cc = 6;
+  string start_work_datetime = 7;
+  string end_work_datetime = 8;
+  string departure_datetime = 9;
+  string return_datetime = 10;
+  double departure_meter = 11;
+  double return_meter = 12;
+  double total_distance = 13;
+  optional int32 driver_code1 = 14;
+  optional double loaded_distance = 15;
+  optional string destination_city_name = 16;
+  optional string destination_place_name = 17;
 }

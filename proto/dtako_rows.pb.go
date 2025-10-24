@@ -647,6 +647,383 @@ func (x *ExportCSVResponse) GetFilename() string {
 	return ""
 }
 
+// 運行データ取得リクエスト
+type GetRowRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // 運行データID
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRowRequest) Reset() {
+	*x = GetRowRequest{}
+	mi := &file_dtako_rows_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRowRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRowRequest) ProtoMessage() {}
+
+func (x *GetRowRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dtako_rows_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRowRequest.ProtoReflect.Descriptor instead.
+func (*GetRowRequest) Descriptor() ([]byte, []int) {
+	return file_dtako_rows_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetRowRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// 運行データレスポンス
+type RowResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Row           *Row                   `protobuf:"bytes,1,opt,name=row,proto3" json:"row,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RowResponse) Reset() {
+	*x = RowResponse{}
+	mi := &file_dtako_rows_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RowResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RowResponse) ProtoMessage() {}
+
+func (x *RowResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dtako_rows_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RowResponse.ProtoReflect.Descriptor instead.
+func (*RowResponse) Descriptor() ([]byte, []int) {
+	return file_dtako_rows_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *RowResponse) GetRow() *Row {
+	if x != nil {
+		return x.Row
+	}
+	return nil
+}
+
+// 運行データ一覧取得リクエスト
+type ListRowsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`                         // 取得件数上限
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`                       // オフセット
+	OrderBy       *string                `protobuf:"bytes,3,opt,name=order_by,json=orderBy,proto3,oneof" json:"order_by,omitempty"` // ソート順
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRowsRequest) Reset() {
+	*x = ListRowsRequest{}
+	mi := &file_dtako_rows_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRowsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRowsRequest) ProtoMessage() {}
+
+func (x *ListRowsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dtako_rows_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRowsRequest.ProtoReflect.Descriptor instead.
+func (*ListRowsRequest) Descriptor() ([]byte, []int) {
+	return file_dtako_rows_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ListRowsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListRowsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListRowsRequest) GetOrderBy() string {
+	if x != nil && x.OrderBy != nil {
+		return *x.OrderBy
+	}
+	return ""
+}
+
+// 運行データ一覧レスポンス
+type ListRowsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rows          []*Row                 `protobuf:"bytes,1,rep,name=rows,proto3" json:"rows,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRowsResponse) Reset() {
+	*x = ListRowsResponse{}
+	mi := &file_dtako_rows_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRowsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRowsResponse) ProtoMessage() {}
+
+func (x *ListRowsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dtako_rows_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRowsResponse.ProtoReflect.Descriptor instead.
+func (*ListRowsResponse) Descriptor() ([]byte, []int) {
+	return file_dtako_rows_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ListRowsResponse) GetRows() []*Row {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+func (x *ListRowsResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
+// 運行データ
+type Row struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	OperationNo          string                 `protobuf:"bytes,2,opt,name=operation_no,json=operationNo,proto3" json:"operation_no,omitempty"`
+	ReadDate             string                 `protobuf:"bytes,3,opt,name=read_date,json=readDate,proto3" json:"read_date,omitempty"`
+	OperationDate        string                 `protobuf:"bytes,4,opt,name=operation_date,json=operationDate,proto3" json:"operation_date,omitempty"`
+	CarCode              int32                  `protobuf:"varint,5,opt,name=car_code,json=carCode,proto3" json:"car_code,omitempty"`
+	CarCc                string                 `protobuf:"bytes,6,opt,name=car_cc,json=carCc,proto3" json:"car_cc,omitempty"`
+	StartWorkDatetime    string                 `protobuf:"bytes,7,opt,name=start_work_datetime,json=startWorkDatetime,proto3" json:"start_work_datetime,omitempty"`
+	EndWorkDatetime      string                 `protobuf:"bytes,8,opt,name=end_work_datetime,json=endWorkDatetime,proto3" json:"end_work_datetime,omitempty"`
+	DepartureDatetime    string                 `protobuf:"bytes,9,opt,name=departure_datetime,json=departureDatetime,proto3" json:"departure_datetime,omitempty"`
+	ReturnDatetime       string                 `protobuf:"bytes,10,opt,name=return_datetime,json=returnDatetime,proto3" json:"return_datetime,omitempty"`
+	DepartureMeter       float64                `protobuf:"fixed64,11,opt,name=departure_meter,json=departureMeter,proto3" json:"departure_meter,omitempty"`
+	ReturnMeter          float64                `protobuf:"fixed64,12,opt,name=return_meter,json=returnMeter,proto3" json:"return_meter,omitempty"`
+	TotalDistance        float64                `protobuf:"fixed64,13,opt,name=total_distance,json=totalDistance,proto3" json:"total_distance,omitempty"`
+	DriverCode1          *int32                 `protobuf:"varint,14,opt,name=driver_code1,json=driverCode1,proto3,oneof" json:"driver_code1,omitempty"`
+	LoadedDistance       *float64               `protobuf:"fixed64,15,opt,name=loaded_distance,json=loadedDistance,proto3,oneof" json:"loaded_distance,omitempty"`
+	DestinationCityName  *string                `protobuf:"bytes,16,opt,name=destination_city_name,json=destinationCityName,proto3,oneof" json:"destination_city_name,omitempty"`
+	DestinationPlaceName *string                `protobuf:"bytes,17,opt,name=destination_place_name,json=destinationPlaceName,proto3,oneof" json:"destination_place_name,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *Row) Reset() {
+	*x = Row{}
+	mi := &file_dtako_rows_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Row) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Row) ProtoMessage() {}
+
+func (x *Row) ProtoReflect() protoreflect.Message {
+	mi := &file_dtako_rows_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Row.ProtoReflect.Descriptor instead.
+func (*Row) Descriptor() ([]byte, []int) {
+	return file_dtako_rows_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *Row) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Row) GetOperationNo() string {
+	if x != nil {
+		return x.OperationNo
+	}
+	return ""
+}
+
+func (x *Row) GetReadDate() string {
+	if x != nil {
+		return x.ReadDate
+	}
+	return ""
+}
+
+func (x *Row) GetOperationDate() string {
+	if x != nil {
+		return x.OperationDate
+	}
+	return ""
+}
+
+func (x *Row) GetCarCode() int32 {
+	if x != nil {
+		return x.CarCode
+	}
+	return 0
+}
+
+func (x *Row) GetCarCc() string {
+	if x != nil {
+		return x.CarCc
+	}
+	return ""
+}
+
+func (x *Row) GetStartWorkDatetime() string {
+	if x != nil {
+		return x.StartWorkDatetime
+	}
+	return ""
+}
+
+func (x *Row) GetEndWorkDatetime() string {
+	if x != nil {
+		return x.EndWorkDatetime
+	}
+	return ""
+}
+
+func (x *Row) GetDepartureDatetime() string {
+	if x != nil {
+		return x.DepartureDatetime
+	}
+	return ""
+}
+
+func (x *Row) GetReturnDatetime() string {
+	if x != nil {
+		return x.ReturnDatetime
+	}
+	return ""
+}
+
+func (x *Row) GetDepartureMeter() float64 {
+	if x != nil {
+		return x.DepartureMeter
+	}
+	return 0
+}
+
+func (x *Row) GetReturnMeter() float64 {
+	if x != nil {
+		return x.ReturnMeter
+	}
+	return 0
+}
+
+func (x *Row) GetTotalDistance() float64 {
+	if x != nil {
+		return x.TotalDistance
+	}
+	return 0
+}
+
+func (x *Row) GetDriverCode1() int32 {
+	if x != nil && x.DriverCode1 != nil {
+		return *x.DriverCode1
+	}
+	return 0
+}
+
+func (x *Row) GetLoadedDistance() float64 {
+	if x != nil && x.LoadedDistance != nil {
+		return *x.LoadedDistance
+	}
+	return 0
+}
+
+func (x *Row) GetDestinationCityName() string {
+	if x != nil && x.DestinationCityName != nil {
+		return *x.DestinationCityName
+	}
+	return ""
+}
+
+func (x *Row) GetDestinationPlaceName() string {
+	if x != nil && x.DestinationPlaceName != nil {
+		return *x.DestinationPlaceName
+	}
+	return ""
+}
+
 var File_dtako_rows_proto protoreflect.FileDescriptor
 
 const file_dtako_rows_proto_rawDesc = "" +
@@ -702,12 +1079,50 @@ const file_dtako_rows_proto_rawDesc = "" +
 	"\x06period\x18\x03 \x01(\tR\x06period\"J\n" +
 	"\x11ExportCSVResponse\x12\x19\n" +
 	"\bcsv_data\x18\x01 \x01(\tR\acsvData\x12\x1a\n" +
-	"\bfilename\x18\x02 \x01(\tR\bfilename2\xbb\x03\n" +
+	"\bfilename\x18\x02 \x01(\tR\bfilename\"\x1f\n" +
+	"\rGetRowRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"0\n" +
+	"\vRowResponse\x12!\n" +
+	"\x03row\x18\x01 \x01(\v2\x0f.dtako_rows.RowR\x03row\"l\n" +
+	"\x0fListRowsRequest\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x1e\n" +
+	"\border_by\x18\x03 \x01(\tH\x00R\aorderBy\x88\x01\x01B\v\n" +
+	"\t_order_by\"X\n" +
+	"\x10ListRowsResponse\x12#\n" +
+	"\x04rows\x18\x01 \x03(\v2\x0f.dtako_rows.RowR\x04rows\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\"\xf9\x05\n" +
+	"\x03Row\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
+	"\foperation_no\x18\x02 \x01(\tR\voperationNo\x12\x1b\n" +
+	"\tread_date\x18\x03 \x01(\tR\breadDate\x12%\n" +
+	"\x0eoperation_date\x18\x04 \x01(\tR\roperationDate\x12\x19\n" +
+	"\bcar_code\x18\x05 \x01(\x05R\acarCode\x12\x15\n" +
+	"\x06car_cc\x18\x06 \x01(\tR\x05carCc\x12.\n" +
+	"\x13start_work_datetime\x18\a \x01(\tR\x11startWorkDatetime\x12*\n" +
+	"\x11end_work_datetime\x18\b \x01(\tR\x0fendWorkDatetime\x12-\n" +
+	"\x12departure_datetime\x18\t \x01(\tR\x11departureDatetime\x12'\n" +
+	"\x0freturn_datetime\x18\n" +
+	" \x01(\tR\x0ereturnDatetime\x12'\n" +
+	"\x0fdeparture_meter\x18\v \x01(\x01R\x0edepartureMeter\x12!\n" +
+	"\freturn_meter\x18\f \x01(\x01R\vreturnMeter\x12%\n" +
+	"\x0etotal_distance\x18\r \x01(\x01R\rtotalDistance\x12&\n" +
+	"\fdriver_code1\x18\x0e \x01(\x05H\x00R\vdriverCode1\x88\x01\x01\x12,\n" +
+	"\x0floaded_distance\x18\x0f \x01(\x01H\x01R\x0eloadedDistance\x88\x01\x01\x127\n" +
+	"\x15destination_city_name\x18\x10 \x01(\tH\x02R\x13destinationCityName\x88\x01\x01\x129\n" +
+	"\x16destination_place_name\x18\x11 \x01(\tH\x03R\x14destinationPlaceName\x88\x01\x01B\x0f\n" +
+	"\r_driver_code1B\x12\n" +
+	"\x10_loaded_distanceB\x18\n" +
+	"\x16_destination_city_nameB\x19\n" +
+	"\x17_destination_place_name2\xc0\x04\n" +
 	"\x10DtakoRowsService\x12u\n" +
 	"\x19GetMonthlyFuelConsumption\x12,.dtako_rows.GetMonthlyFuelConsumptionRequest\x1a*.dtako_rows.MonthlyFuelConsumptionResponse\x12r\n" +
 	"\x18GetVehicleMonthlySummary\x12+.dtako_rows.GetVehicleMonthlySummaryRequest\x1a).dtako_rows.VehicleMonthlySummaryResponse\x12W\n" +
 	"\x0fGetDailySummary\x12\".dtako_rows.GetDailySummaryRequest\x1a .dtako_rows.DailySummaryResponse\x12c\n" +
-	"\x14ExportMonthlyFuelCSV\x12,.dtako_rows.GetMonthlyFuelConsumptionRequest\x1a\x1d.dtako_rows.ExportCSVResponseB\x9d\x01\n" +
+	"\x14ExportMonthlyFuelCSV\x12,.dtako_rows.GetMonthlyFuelConsumptionRequest\x1a\x1d.dtako_rows.ExportCSVResponse\x12<\n" +
+	"\x06GetRow\x12\x19.dtako_rows.GetRowRequest\x1a\x17.dtako_rows.RowResponse\x12E\n" +
+	"\bListRows\x12\x1b.dtako_rows.ListRowsRequest\x1a\x1c.dtako_rows.ListRowsResponseB\x9d\x01\n" +
 	"\x0ecom.dtako_rowsB\x0eDtakoRowsProtoP\x01Z7github.com/yhonda-ohishi/dtako_rows/v3/proto;dtako_rows\xa2\x02\x03DXX\xaa\x02\tDtakoRows\xca\x02\tDtakoRows\xe2\x02\x15DtakoRows\\GPBMetadata\xea\x02\tDtakoRowsb\x06proto3"
 
 var (
@@ -722,7 +1137,7 @@ func file_dtako_rows_proto_rawDescGZIP() []byte {
 	return file_dtako_rows_proto_rawDescData
 }
 
-var file_dtako_rows_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_dtako_rows_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_dtako_rows_proto_goTypes = []any{
 	(*MonthlyFuelSummary)(nil),               // 0: dtako_rows.MonthlyFuelSummary
 	(*GetMonthlyFuelConsumptionRequest)(nil), // 1: dtako_rows.GetMonthlyFuelConsumptionRequest
@@ -734,25 +1149,36 @@ var file_dtako_rows_proto_goTypes = []any{
 	(*DailySummary)(nil),                     // 7: dtako_rows.DailySummary
 	(*DailySummaryResponse)(nil),             // 8: dtako_rows.DailySummaryResponse
 	(*ExportCSVResponse)(nil),                // 9: dtako_rows.ExportCSVResponse
+	(*GetRowRequest)(nil),                    // 10: dtako_rows.GetRowRequest
+	(*RowResponse)(nil),                      // 11: dtako_rows.RowResponse
+	(*ListRowsRequest)(nil),                  // 12: dtako_rows.ListRowsRequest
+	(*ListRowsResponse)(nil),                 // 13: dtako_rows.ListRowsResponse
+	(*Row)(nil),                              // 14: dtako_rows.Row
 }
 var file_dtako_rows_proto_depIdxs = []int32{
-	0, // 0: dtako_rows.MonthlyFuelConsumptionResponse.summaries:type_name -> dtako_rows.MonthlyFuelSummary
-	0, // 1: dtako_rows.VehicleMonthlySummaries.summaries:type_name -> dtako_rows.MonthlyFuelSummary
-	4, // 2: dtako_rows.VehicleMonthlySummaryResponse.vehicle_summaries:type_name -> dtako_rows.VehicleMonthlySummaries
-	7, // 3: dtako_rows.DailySummaryResponse.summaries:type_name -> dtako_rows.DailySummary
-	1, // 4: dtako_rows.DtakoRowsService.GetMonthlyFuelConsumption:input_type -> dtako_rows.GetMonthlyFuelConsumptionRequest
-	3, // 5: dtako_rows.DtakoRowsService.GetVehicleMonthlySummary:input_type -> dtako_rows.GetVehicleMonthlySummaryRequest
-	6, // 6: dtako_rows.DtakoRowsService.GetDailySummary:input_type -> dtako_rows.GetDailySummaryRequest
-	1, // 7: dtako_rows.DtakoRowsService.ExportMonthlyFuelCSV:input_type -> dtako_rows.GetMonthlyFuelConsumptionRequest
-	2, // 8: dtako_rows.DtakoRowsService.GetMonthlyFuelConsumption:output_type -> dtako_rows.MonthlyFuelConsumptionResponse
-	5, // 9: dtako_rows.DtakoRowsService.GetVehicleMonthlySummary:output_type -> dtako_rows.VehicleMonthlySummaryResponse
-	8, // 10: dtako_rows.DtakoRowsService.GetDailySummary:output_type -> dtako_rows.DailySummaryResponse
-	9, // 11: dtako_rows.DtakoRowsService.ExportMonthlyFuelCSV:output_type -> dtako_rows.ExportCSVResponse
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0,  // 0: dtako_rows.MonthlyFuelConsumptionResponse.summaries:type_name -> dtako_rows.MonthlyFuelSummary
+	0,  // 1: dtako_rows.VehicleMonthlySummaries.summaries:type_name -> dtako_rows.MonthlyFuelSummary
+	4,  // 2: dtako_rows.VehicleMonthlySummaryResponse.vehicle_summaries:type_name -> dtako_rows.VehicleMonthlySummaries
+	7,  // 3: dtako_rows.DailySummaryResponse.summaries:type_name -> dtako_rows.DailySummary
+	14, // 4: dtako_rows.RowResponse.row:type_name -> dtako_rows.Row
+	14, // 5: dtako_rows.ListRowsResponse.rows:type_name -> dtako_rows.Row
+	1,  // 6: dtako_rows.DtakoRowsService.GetMonthlyFuelConsumption:input_type -> dtako_rows.GetMonthlyFuelConsumptionRequest
+	3,  // 7: dtako_rows.DtakoRowsService.GetVehicleMonthlySummary:input_type -> dtako_rows.GetVehicleMonthlySummaryRequest
+	6,  // 8: dtako_rows.DtakoRowsService.GetDailySummary:input_type -> dtako_rows.GetDailySummaryRequest
+	1,  // 9: dtako_rows.DtakoRowsService.ExportMonthlyFuelCSV:input_type -> dtako_rows.GetMonthlyFuelConsumptionRequest
+	10, // 10: dtako_rows.DtakoRowsService.GetRow:input_type -> dtako_rows.GetRowRequest
+	12, // 11: dtako_rows.DtakoRowsService.ListRows:input_type -> dtako_rows.ListRowsRequest
+	2,  // 12: dtako_rows.DtakoRowsService.GetMonthlyFuelConsumption:output_type -> dtako_rows.MonthlyFuelConsumptionResponse
+	5,  // 13: dtako_rows.DtakoRowsService.GetVehicleMonthlySummary:output_type -> dtako_rows.VehicleMonthlySummaryResponse
+	8,  // 14: dtako_rows.DtakoRowsService.GetDailySummary:output_type -> dtako_rows.DailySummaryResponse
+	9,  // 15: dtako_rows.DtakoRowsService.ExportMonthlyFuelCSV:output_type -> dtako_rows.ExportCSVResponse
+	11, // 16: dtako_rows.DtakoRowsService.GetRow:output_type -> dtako_rows.RowResponse
+	13, // 17: dtako_rows.DtakoRowsService.ListRows:output_type -> dtako_rows.ListRowsResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_dtako_rows_proto_init() }
@@ -760,13 +1186,15 @@ func file_dtako_rows_proto_init() {
 	if File_dtako_rows_proto != nil {
 		return
 	}
+	file_dtako_rows_proto_msgTypes[12].OneofWrappers = []any{}
+	file_dtako_rows_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dtako_rows_proto_rawDesc), len(file_dtako_rows_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

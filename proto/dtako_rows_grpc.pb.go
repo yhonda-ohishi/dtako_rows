@@ -23,6 +23,8 @@ const (
 	DtakoRowsService_GetVehicleMonthlySummary_FullMethodName  = "/dtako_rows.DtakoRowsService/GetVehicleMonthlySummary"
 	DtakoRowsService_GetDailySummary_FullMethodName           = "/dtako_rows.DtakoRowsService/GetDailySummary"
 	DtakoRowsService_ExportMonthlyFuelCSV_FullMethodName      = "/dtako_rows.DtakoRowsService/ExportMonthlyFuelCSV"
+	DtakoRowsService_GetRow_FullMethodName                    = "/dtako_rows.DtakoRowsService/GetRow"
+	DtakoRowsService_ListRows_FullMethodName                  = "/dtako_rows.DtakoRowsService/ListRows"
 )
 
 // DtakoRowsServiceClient is the client API for DtakoRowsService service.
@@ -39,6 +41,10 @@ type DtakoRowsServiceClient interface {
 	GetDailySummary(ctx context.Context, in *GetDailySummaryRequest, opts ...grpc.CallOption) (*DailySummaryResponse, error)
 	// CSV形式でエクスポート
 	ExportMonthlyFuelCSV(ctx context.Context, in *GetMonthlyFuelConsumptionRequest, opts ...grpc.CallOption) (*ExportCSVResponse, error)
+	// 運行データ取得（db_serviceプロキシ）
+	GetRow(ctx context.Context, in *GetRowRequest, opts ...grpc.CallOption) (*RowResponse, error)
+	// 運行データ一覧取得（db_serviceプロキシ）
+	ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error)
 }
 
 type dtakoRowsServiceClient struct {
@@ -89,6 +95,26 @@ func (c *dtakoRowsServiceClient) ExportMonthlyFuelCSV(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *dtakoRowsServiceClient) GetRow(ctx context.Context, in *GetRowRequest, opts ...grpc.CallOption) (*RowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RowResponse)
+	err := c.cc.Invoke(ctx, DtakoRowsService_GetRow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dtakoRowsServiceClient) ListRows(ctx context.Context, in *ListRowsRequest, opts ...grpc.CallOption) (*ListRowsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListRowsResponse)
+	err := c.cc.Invoke(ctx, DtakoRowsService_ListRows_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DtakoRowsServiceServer is the server API for DtakoRowsService service.
 // All implementations must embed UnimplementedDtakoRowsServiceServer
 // for forward compatibility.
@@ -103,6 +129,10 @@ type DtakoRowsServiceServer interface {
 	GetDailySummary(context.Context, *GetDailySummaryRequest) (*DailySummaryResponse, error)
 	// CSV形式でエクスポート
 	ExportMonthlyFuelCSV(context.Context, *GetMonthlyFuelConsumptionRequest) (*ExportCSVResponse, error)
+	// 運行データ取得（db_serviceプロキシ）
+	GetRow(context.Context, *GetRowRequest) (*RowResponse, error)
+	// 運行データ一覧取得（db_serviceプロキシ）
+	ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error)
 	mustEmbedUnimplementedDtakoRowsServiceServer()
 }
 
@@ -124,6 +154,12 @@ func (UnimplementedDtakoRowsServiceServer) GetDailySummary(context.Context, *Get
 }
 func (UnimplementedDtakoRowsServiceServer) ExportMonthlyFuelCSV(context.Context, *GetMonthlyFuelConsumptionRequest) (*ExportCSVResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExportMonthlyFuelCSV not implemented")
+}
+func (UnimplementedDtakoRowsServiceServer) GetRow(context.Context, *GetRowRequest) (*RowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRow not implemented")
+}
+func (UnimplementedDtakoRowsServiceServer) ListRows(context.Context, *ListRowsRequest) (*ListRowsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRows not implemented")
 }
 func (UnimplementedDtakoRowsServiceServer) mustEmbedUnimplementedDtakoRowsServiceServer() {}
 func (UnimplementedDtakoRowsServiceServer) testEmbeddedByValue()                          {}
@@ -218,6 +254,42 @@ func _DtakoRowsService_ExportMonthlyFuelCSV_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DtakoRowsService_GetRow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DtakoRowsServiceServer).GetRow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DtakoRowsService_GetRow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DtakoRowsServiceServer).GetRow(ctx, req.(*GetRowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DtakoRowsService_ListRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRowsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DtakoRowsServiceServer).ListRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DtakoRowsService_ListRows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DtakoRowsServiceServer).ListRows(ctx, req.(*ListRowsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DtakoRowsService_ServiceDesc is the grpc.ServiceDesc for DtakoRowsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -240,6 +312,14 @@ var DtakoRowsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExportMonthlyFuelCSV",
 			Handler:    _DtakoRowsService_ExportMonthlyFuelCSV_Handler,
+		},
+		{
+			MethodName: "GetRow",
+			Handler:    _DtakoRowsService_GetRow_Handler,
+		},
+		{
+			MethodName: "ListRows",
+			Handler:    _DtakoRowsService_ListRows_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

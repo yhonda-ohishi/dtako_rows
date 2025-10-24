@@ -169,3 +169,72 @@ func (s *DtakoRowsAggregationService) ExportMonthlyFuelCSV(ctx context.Context, 
 		Filename: filename,
 	}, nil
 }
+
+// GetRow 運行データ取得（db_serviceプロキシ）
+func (s *DtakoRowsAggregationService) GetRow(ctx context.Context, req *pb.GetRowRequest) (*pb.RowResponse, error) {
+	log.Printf("GetRow (proxy): id=%s", req.Id)
+
+	// db_serviceから取得
+	dbResp, err := s.dbClient.Get(ctx, &dbpb.Db_GetDTakoRowsRequest{
+		Id: req.Id,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// db_serviceの型からdtako_rowsの型に変換
+	row := convertDbRowToProto(dbResp.DtakoRows)
+
+	return &pb.RowResponse{
+		Row: row,
+	}, nil
+}
+
+// ListRows 運行データ一覧取得（db_serviceプロキシ）
+func (s *DtakoRowsAggregationService) ListRows(ctx context.Context, req *pb.ListRowsRequest) (*pb.ListRowsResponse, error) {
+	log.Printf("ListRows (proxy): limit=%d, offset=%d", req.Limit, req.Offset)
+
+	// db_serviceから取得
+	dbResp, err := s.dbClient.List(ctx, &dbpb.Db_ListDTakoRowsRequest{
+		Limit:   req.Limit,
+		Offset:  req.Offset,
+		OrderBy: req.OrderBy,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// db_serviceの型からdtako_rowsの型に変換
+	rows := make([]*pb.Row, len(dbResp.Items))
+	for i, dbRow := range dbResp.Items {
+		rows[i] = convertDbRowToProto(dbRow)
+	}
+
+	return &pb.ListRowsResponse{
+		Rows:       rows,
+		TotalCount: dbResp.TotalCount,
+	}, nil
+}
+
+// convertDbRowToProto db_serviceの運行データ型をdtako_rowsの型に変換
+func convertDbRowToProto(dbRow *dbpb.Db_DTakoRows) *pb.Row {
+	return &pb.Row{
+		Id:                    dbRow.Id,
+		OperationNo:           dbRow.OperationNo,
+		ReadDate:              dbRow.ReadDate,
+		OperationDate:         dbRow.OperationDate,
+		CarCode:               dbRow.CarCode,
+		CarCc:                 dbRow.CarCc,
+		StartWorkDatetime:     dbRow.StartWorkDatetime,
+		EndWorkDatetime:       dbRow.EndWorkDatetime,
+		DepartureDatetime:     dbRow.DepartureDatetime,
+		ReturnDatetime:        dbRow.ReturnDatetime,
+		DepartureMeter:        dbRow.DepartureMeter,
+		ReturnMeter:           dbRow.ReturnMeter,
+		TotalDistance:         dbRow.TotalDistance,
+		DriverCode1:           dbRow.DriverCode1,
+		LoadedDistance:        dbRow.LoadedDistance,
+		DestinationCityName:   dbRow.DestinationCityName,
+		DestinationPlaceName:  dbRow.DestinationPlaceName,
+	}
+}
