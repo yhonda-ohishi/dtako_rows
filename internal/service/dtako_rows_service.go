@@ -5,8 +5,7 @@ import (
 	"log"
 	"time"
 
-	dbpb "buf.build/gen/go/yhonda-ohishi/db-service/protocolbuffers/go"
-	dbgrpc "buf.build/gen/go/yhonda-ohishi/db-service/grpc/go/_gogrpc"
+	dbpb "github.com/yhonda-ohishi/db_service/src/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
@@ -26,8 +25,8 @@ type FilterOptions struct {
 // DtakoRowsService gRPCサービス実装（読み取り専用）
 // データアクセスはdb_service経由で行う
 type DtakoRowsService struct {
-	dbgrpc.UnimplementedDb_DTakoRowsServiceServer
-	dbClient dbgrpc.Db_DTakoRowsServiceClient
+	dbpb.UnimplementedDb_DTakoRowsServiceServer
+	dbClient dbpb.Db_DTakoRowsServiceClient
 }
 
 // NewDtakoRowsService サービスの作成（スタンドアロン用）
@@ -39,7 +38,7 @@ func NewDtakoRowsService(dbServiceAddr string) (*DtakoRowsService, error) {
 		return nil, err
 	}
 
-	client := dbgrpc.NewDb_DTakoRowsServiceClient(conn)
+	client := dbpb.NewDb_DTakoRowsServiceClient(conn)
 	log.Printf("Connected to db_service at %s", dbServiceAddr)
 
 	return &DtakoRowsService{
@@ -49,7 +48,7 @@ func NewDtakoRowsService(dbServiceAddr string) (*DtakoRowsService, error) {
 
 // NewDtakoRowsServiceWithClient サービスの作成（desktop-server統合用）
 // 既存のdb_serviceクライアントを受け取る
-func NewDtakoRowsServiceWithClient(client dbgrpc.Db_DTakoRowsServiceClient) *DtakoRowsService {
+func NewDtakoRowsServiceWithClient(client dbpb.Db_DTakoRowsServiceClient) *DtakoRowsService {
 	log.Println("Creating dtako_rows service with existing db_service client")
 	return &DtakoRowsService{
 		dbClient: client,

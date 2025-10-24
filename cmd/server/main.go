@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	dbgrpc "buf.build/gen/go/yhonda-ohishi/db-service/grpc/go/_gogrpc"
+	dbpb "github.com/yhonda-ohishi/db_service/src/proto"
 	"github.com/joho/godotenv"
 	"github.com/yhonda-ohishi/dtako_rows/v3/internal/service"
 	pb "github.com/yhonda-ohishi/dtako_rows/v3/proto"
@@ -44,7 +44,7 @@ func main() {
 	grpcServer := grpc.NewServer()
 
 	// サービス登録
-	dbgrpc.RegisterDb_DTakoRowsServiceServer(grpcServer, dtakoRowsService)
+	dbpb.RegisterDb_DTakoRowsServiceServer(grpcServer, dtakoRowsService)
 	pb.RegisterDtakoRowsServiceServer(grpcServer, aggregationService)
 
 	// リフレクション登録（grpcurlなどのツール用）

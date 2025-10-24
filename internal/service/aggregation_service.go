@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"log"
 
-	dbgrpc "buf.build/gen/go/yhonda-ohishi/db-service/grpc/go/_gogrpc"
+	dbpb "github.com/yhonda-ohishi/db_service/src/proto"
 	pb "github.com/yhonda-ohishi/dtako_rows/v3/proto"
 )
 
 // DtakoRowsAggregationService 集計サービス実装
 type DtakoRowsAggregationService struct {
 	pb.UnimplementedDtakoRowsServiceServer
-	dbClient dbgrpc.Db_DTakoRowsServiceClient
+	dbClient dbpb.Db_DTakoRowsServiceClient
 }
 
 // NewDtakoRowsAggregationService 集計サービスの作成（スタンドアロン用）
@@ -29,7 +29,7 @@ func NewDtakoRowsAggregationService(dbServiceAddr string) (*DtakoRowsAggregation
 }
 
 // NewDtakoRowsAggregationServiceWithClient 集計サービスの作成（desktop-server統合用）
-func NewDtakoRowsAggregationServiceWithClient(client dbgrpc.Db_DTakoRowsServiceClient) *DtakoRowsAggregationService {
+func NewDtakoRowsAggregationServiceWithClient(client dbpb.Db_DTakoRowsServiceClient) *DtakoRowsAggregationService {
 	log.Println("Creating dtako_rows aggregation service with existing db_service client")
 	return &DtakoRowsAggregationService{
 		dbClient: client,

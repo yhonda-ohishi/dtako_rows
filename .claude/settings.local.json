@@ -4,7 +4,13 @@
       "Bash(sed -i 's|dtako_rows/v2|dtako_rows/v3|g' cmd/server/main.go internal/service/dtako_rows_service.go pkg/registry/registry.go proto/dtako_rows.proto)",
       "Read(//c/go/desktop-server/**)",
       "Bash(go mod tidy:*)",
-      "Bash(go build:*)"
+      "Bash(go build:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(go get:*)",
+      "Bash(go list:*)",
+      "Read(//c/Users/mtama/go/pkg/mod/buf.build/gen/go/yhonda-ohishi/db-service/protocolbuffers/go@v1.36.10-20251023141239-9b0c2193725c.1/**)",
+      "Read(//c/go/dtako_events/**)"
     ],
     "deny": [],
     "ask": []
