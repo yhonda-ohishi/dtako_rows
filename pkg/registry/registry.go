@@ -7,6 +7,7 @@ import (
 	"github.com/yhonda-ohishi/dtako_rows/v3/internal/service"
 	pb "github.com/yhonda-ohishi/dtako_rows/v3/proto"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 // Register dtako_rowsサービスをgRPCサーバーに登録
@@ -15,30 +16,28 @@ import (
 // このパターンにより、複数のサービスを1つのプロセスで管理できる。
 //
 // 登録されるサービス:
-//   - DTakoRowsService: 運行データ管理（db_serviceへのプロキシ）
+//   - Db_DTakoRowsService: 運行データCRUDプロキシ（db_serviceへ）
+//   - DtakoRowsService: 集計機能 + GetRow/ListRowsプロキシ
 //
 // データアクセス:
 //   - db_service経由で行う（同一プロセス内gRPC呼び出し）
 //   - db_serviceがDB操作を担当し、このサービスは透過的にプロキシする
-//
-// 使い方（desktop-server内）:
-//   dtakoRowsClient := dbpb.NewDb_DTakoRowsServiceClient(localConn)  // 同一プロセス内接続
-//   dtako_rows_registry.RegisterWithClient(grpcServer, dtakoRowsClient)
 func Register(grpcServer *grpc.Server) error {
-	log.Println("Registering dtako_rows service...")
+	log.Println("Registering dtako_rows services...")
 
-	// デフォルトのdb_serviceアドレス（同一ホスト）
-	dbServiceAddr := "localhost:50051"
-
-	// db_serviceへのプロキシサービスを登録（外部接続）
-	svc, err := service.NewDtakoRowsService(dbServiceAddr)
+	// Create db_service client
+	conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		log.Printf("Failed to create dtako_rows service: %v", err)
+		log.Printf("Failed to create db_service client: %v", err)
 		return err
 	}
-	dbpb.RegisterDb_DTakoRowsServiceServer(grpcServer, svc)
 
-	log.Println("dtako_rows service registered successfully")
+	dbClient := dbpb.NewDb_DTakoRowsServiceClient(conn)
+
+	// Register both services using RegisterWithClient
+	RegisterWithClient(grpcServer, dbClient)
+
+	log.Println("dtako_rows services registered successfully (Db_DTakoRowsService + DtakoRowsService)")
 	return nil
 }
 
